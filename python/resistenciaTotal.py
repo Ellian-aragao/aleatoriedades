@@ -14,3 +14,13 @@ if x == 1:
             valorParalelo = paralelo(valorParalelo, n[i])
 
     print('valor das resistências paralelas: {}'.format(valorParalelo))
+
+
+x = int(input('circuto serie? '))
+if x == 1:
+    n = [float(x) for x in input().split()]
+    valorSerie = 0
+    for valor in n:
+        valorSerie += valor
+    
+    print('valor das resistências em serie: {}'.format(valorSerie))
