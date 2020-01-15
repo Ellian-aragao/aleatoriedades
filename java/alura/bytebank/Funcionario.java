@@ -3,7 +3,7 @@ package alura.bytebank;
 public class Funcionario {
     private String nome;
     private String cpf;
-    protected double salario;
+    private double salario;
     private int tipo;
 
     public String getNome() {
