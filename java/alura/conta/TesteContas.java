@@ -6,7 +6,7 @@ public class TesteContas {
         Conta cp = new ContaPoupanca(222, 222);
         cp.deposita(200); 
 
-        cc.transfere(10, cp);
+        cc.tranfere(10, cp);
 
         System.out.println("Conta corrente: " + cc.getSaldo());
         System.out.println("Conta poupanca: " + cp.getSaldo());

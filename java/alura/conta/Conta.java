@@ -1,12 +1,12 @@
-public class Conta {
-    private double saldo;
+public abstract class Conta {
+    protected double saldo;
     private int agencia;
     private int numero;
     private Cliente titular;
     private static int total;
 
     public Conta (int agencia, int numero) {
-        conta.total++;
+        total++;
         System.out.println("O total de contas e " + Conta.total);
         this.agencia = agencia;
         this.numero = numero;
@@ -14,9 +14,7 @@ public class Conta {
         System.out.println("Estou criando uma conta " + this.numero);
     }
 
-    public void deposita (double valor) {
-        this.saldo += valor;
-    }
+    public abstract void deposita (double valor);
 
     public boolean saca(double valor) {
         if (this.saldo >= valor) {
@@ -62,6 +60,9 @@ public class Conta {
             return;
         }
         this.agencia = agencia;
+    }
+    public Cliente getCliente () {
+        return this.titular;
     }
 
     public void setTitular(Cliente titular) {

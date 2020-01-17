@@ -1,30 +1,20 @@
-package alura.bytebank;
-
+// introdução a OOP
 public class TesteFuncionario {
     public static void main(String[] args) {
-        Funcionario lucas = new Funcionario();
-        lucas.setNome("lucas");
-        lucas.setSalario(2500);
-        lucas.setCpf("22335566-9");
 
-        System.out.println("funcionario");
-        System.out.println("nome: " + lucas.getNome());
-        System.out.println("CPF: " + lucas.getCpf());
-        System.out.println("Salario: " + lucas.getSalario());
-        System.out.println("Bonificacao: " + lucas.getBonificacao());
-
-        System.out.println("-------------------------------");
-
-        // introdução a herança
-        Gerente tomas = new Gerente();
+        Funcionario tomas = new Gerente();
         tomas.setNome("tomas");
         tomas.setSalario(3000);
         tomas.setCpf("998877664-0");
-        tomas.setSenha(2222);
+        
+        // cast para funcionamento do método da classe
+        ((Gerente)tomas).setSenha(2222); 
 
-        System.out.println("funcionario gerente");
+        System.out.println("Gerente");
         System.out.println("nome: " + tomas.getNome());
-        System.out.println("senha: " + tomas.autentica(2222));
+        System.out.println("senha: " + "2222  " + ((Gerente)tomas).autentica(2222));
+        SistemaInterno sys = new SistemaInterno();
+        sys.autentica((Gerente)tomas);
         System.out.println("CPF: " + tomas.getCpf());
         System.out.println("Salario: " + tomas.getSalario());
         System.out.println("Bonificacao: " + tomas.getBonificacao());
@@ -32,17 +22,33 @@ public class TesteFuncionario {
         System.out.println("-------------------------");
 
         // introdução a polimofismo
-        Funcionario marcos = new Gerente();
+        Funcionario marcos = new Designer();
         marcos.setNome("marcos");
-        marcos.setSalario(3500);
+        marcos.setSalario(2000);
         marcos.setCpf("045987632-25");
-        ((Gerente)marcos).setSenha(1515);
 
-        System.out.println("funcionario gerente polimofirmos");
+        System.out.println("designer");
         System.out.println("nome: " + marcos.getNome());
-        System.out.println("senha: " + ((Gerente)marcos).autentica(1515));
         System.out.println("CPF: " + marcos.getCpf());
         System.out.println("Salario: " + marcos.getSalario());
         System.out.println("Bonificacao: " + marcos.getBonificacao());
+
+        System.out.println("-------------------------");
+
+        Funcionario robert = new Administrador();
+        robert.setNome("robert");
+        robert.setSalario(3000);
+        robert.setCpf("998877664-0");
+        
+        // cast para funcionamento do método da classe
+        ((Administrador)robert).setSenha(2222); 
+
+        System.out.println("Administrador");
+        System.out.println("nome: " + robert.getNome());
+        System.out.println("senha: " + "3333  " + ((Administrador)robert).autentica(3333));
+        sys.autentica((Administrador)robert);
+        System.out.println("CPF: " + robert.getCpf());
+        System.out.println("Salario: " + robert.getSalario());
+        System.out.println("Bonificacao: " + robert.getBonificacao());
     }
 }
