@@ -1,3 +1,6 @@
+import contas.*;
+import contas.tipo.*;
+
 public class TesteContas {
     public static void main (String[] args) {
         Conta cc = new ContaCorrente(111, 111);
@@ -9,7 +12,7 @@ public class TesteContas {
         try {
             cc.tranfere(100, cp);
         } catch (SaldoInsuficienteException e) {
-            System.out.println("ERROR: " + e.getMessage());
+            System.out.println("\nERROR: " + e.getMessage() + "\n");
         }
 
         System.out.println("Conta corrente: " + cc.getSaldo());

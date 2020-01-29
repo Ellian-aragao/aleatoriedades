@@ -1,9 +1,12 @@
-public class Administrador extends Funcionario implements Autenticavel {
+package usuarios;
+
+public class Gerente extends Funcionario implements Autenticavel {
+    
     private int senha;
 
     @Override
     public double getBonificacao() {
-        return 50;
+        return 100;
     }
 
     @Override

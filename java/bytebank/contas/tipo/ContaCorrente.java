@@ -1,3 +1,7 @@
+package contas.tipo;
+
+import contas.Conta;
+
 public class ContaCorrente extends Conta{
     public ContaCorrente(int agencia, int numero) {
         super(agencia, numero);
@@ -13,6 +17,4 @@ public class ContaCorrente extends Conta{
     public void deposita(double valor) {
         super.saldo += valor;
     }
-
-
 }

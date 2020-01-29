@@ -1,3 +1,7 @@
+package contas.tipo;
+
+import contas.Conta;
+
 public class ContaPoupanca extends Conta {
     public ContaPoupanca(int agencia,int numero) {
         super(agencia, numero);

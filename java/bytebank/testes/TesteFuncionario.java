@@ -1,4 +1,5 @@
-// introdução a OOP
+import usuarios.*;
+
 public class TesteFuncionario {
     public static void main(String[] args) {
 

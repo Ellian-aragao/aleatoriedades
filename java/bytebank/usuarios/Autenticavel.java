@@ -1,4 +1,6 @@
-public  interface Autenticavel {
+package usuarios;
+
+public interface Autenticavel {
     
     public abstract void setSenha(int senha);
 

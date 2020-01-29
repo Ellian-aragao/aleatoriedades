@@ -1,3 +1,5 @@
+package contas;
+
 public class Cliente {
 
     private String nome;

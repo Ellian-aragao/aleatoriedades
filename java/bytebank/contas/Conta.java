@@ -1,3 +1,5 @@
+package contas;
+
 public abstract class Conta {
     protected double saldo;
     private int agencia;
