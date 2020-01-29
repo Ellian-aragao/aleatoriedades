@@ -6,7 +6,11 @@ public class TesteContas {
         Conta cp = new ContaPoupanca(222, 222);
         cp.deposita(200); 
 
-        cc.tranfere(10, cp);
+        try {
+            cc.tranfere(100, cp);
+        } catch (SaldoInsuficienteException e) {
+            System.out.println("ERROR: " + e.getMessage());
+        }
 
         System.out.println("Conta corrente: " + cc.getSaldo());
         System.out.println("Conta poupanca: " + cp.getSaldo());
