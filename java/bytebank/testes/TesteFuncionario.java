@@ -1,3 +1,5 @@
+package testes;
+
 import usuarios.*;
 
 public class TesteFuncionario {

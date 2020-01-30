@@ -1,3 +1,5 @@
+package testes;
+
 import contas.*;
 import contas.tipo.*;
 
