@@ -1,1 +1,1 @@
-seno(10)
+cos(seno(10))
