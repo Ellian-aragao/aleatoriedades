@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
             fprintf(final_arq, "%c", c);
         }
     } while (c != EOF);
-		puts("arquivos salvos com sucesso");
+	puts("arquivos salvos com sucesso");
     fclose(final_arq);
     fclose(arq);
     return 0;
