@@ -4,7 +4,7 @@ int main(int argc, char *argv[])
     FILE *arq = fopen(argv[1], "r");
     FILE *final_arq = fopen("finalTxt", "w");
 		
-	// string de início para atualizar pacote ubuntu
+  // string de início para atualizar pacote ubuntu
     char strInicio[] = "sudo apt install ";
     char strFinal[] = " -only-upgrade -y";
 
@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
             fprintf(final_arq, "%c", c);
         }
     } while (c != EOF);
-	puts("arquivos salvos com sucesso");
+  puts("arquivos salvos com sucesso");
     fclose(final_arq);
     fclose(arq);
     return 0;
