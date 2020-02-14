@@ -5,7 +5,7 @@ apt-get install git -y		    # gerenciador de versionamento
 apt-get install qbittorrent -y  # donwload de torrent
 apt-get install wireshark -y    # analisador de pacotes da rede
 apt-get install calibre -y      # editor e leitor de ebooks
-apt-get install default-jdk	# pacote java atual
+apt-get install default-jdk -y	# pacote java atual
 
 snap install code --classic	    # editor de codigos vscode
 snap install okular             # leitor de PDF
