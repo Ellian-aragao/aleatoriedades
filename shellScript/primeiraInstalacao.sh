@@ -1,5 +1,6 @@
 #!/bin/bash
 
+apt-get install virtualbox -y		# maquina virtual
 apt-get install gnome-tweak-tool -y	# configurar aparencia do gnome
 apt-get install vim -y		    	# editor de texto via terminal
 apt-get install git -y		    	# gerenciador de versionamento
