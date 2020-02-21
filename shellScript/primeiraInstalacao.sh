@@ -57,3 +57,12 @@ apt-get update && apt-get upgrade -y
 echo "limpando cache"
 apt autoremove && apt autoclean -y
 echo "terminada a atualização"
+
+<<extensão
+    para o gnome, existe uma extensão que poupa alguns pixels de tela o que pode não fazer
+    diferença, entretanto conseguir ver mais o conteúdo que se deseja sempre é algo agradável
+    portanto, segue o nome e link da extensão
+    
+    No Title Bar
+    https://extensions.gnome.org/extension/1267/no-title-bar/
+extensão
