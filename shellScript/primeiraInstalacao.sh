@@ -28,7 +28,7 @@ snap install vlc                        # reprodutor de video e musica
 snap install gimp                       # composição de fotos
 snap install darktable                  # editor de fotos
 snap install inkscape                   # editor vetorial
-snap install discord			# servidor de voz
+snap install discord        			# servidor de voz
 #snap install audacity                  # edição de audio
 #snap install xmind                     # mapa mental
 #snap install kdenlive                  # editor de videos
@@ -56,14 +56,14 @@ atualizando
 echo "baixando e atualizando os pacotes"
 apt-get update && apt-get upgrade -y
 echo "limpando cache"
-apt autoremove && apt autoclean -y
+apt autoremove -y && apt autoclean -y
 echo "terminada a atualização"
 
 <<extensão
     para o gnome, existe uma extensão que poupa alguns pixels de tela o que pode não fazer
     diferença, entretanto conseguir ver mais o conteúdo que se deseja sempre é algo agradável
     portanto, segue o nome e link da extensão
-    
+
     No Title Bar
     https://extensions.gnome.org/extension/1267/no-title-bar/
 extensão
