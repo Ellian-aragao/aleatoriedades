@@ -6,9 +6,16 @@ import contas.tipo.ContaCorrente;
 public class EstruturaTeste {
     public static void main(String[] args) {
         Conta estruturaDeContas[] = new Conta[5];
-        ContaCorrente cc = new ContaCorrente(0001, 1025);
-        estruturaDeContas[0] = cc;
-        System.out.println(estruturaDeContas[0]);
+        
+        for (int i = 0; i < estruturaDeContas.length; i++) {
+            ContaCorrente cc = new ContaCorrente(i + 1, i + 1025);
+            estruturaDeContas[i] = cc;
+        }
 
+        System.out.println("_________MOSTRANDO CONTAS__________");
+
+        for (int i = 0; i < estruturaDeContas.length; i++) {
+            System.out.println(estruturaDeContas[i]);
+        }
     }
 }
