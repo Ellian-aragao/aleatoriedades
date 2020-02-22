@@ -28,6 +28,7 @@ snap install vlc                        # reprodutor de video e musica
 snap install gimp                       # composição de fotos
 snap install darktable                  # editor de fotos
 snap install inkscape                   # editor vetorial
+snap install discord			# servidor de voz
 #snap install audacity                  # edição de audio
 #snap install xmind                     # mapa mental
 #snap install kdenlive                  # editor de videos
