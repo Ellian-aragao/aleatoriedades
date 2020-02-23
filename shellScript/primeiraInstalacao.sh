@@ -46,10 +46,22 @@ appImage
 wget https://github.com/balena-io/etcher/releases/download/v1.5.79/balena-etcher-electron-1.5.79-linux-x64.zip
 
 
-<<padraoUbuntu
+<<timeShift
+    programa para recuperação de imagem do sistema, cria snapshots do sistema para recuperação do sistema por completo
+
+add-apt-repository -y ppa:teejee2008/timeshift
+apt-get update
+apt-get install timeshift
+
+timeShift
+
+
+
+
+<<removendoPacotes
     remove os pacotes básicos do ubuntu para utilização unica dos pacotes baixados 
     dos quais me são mais agradáveis a usabilidade deles tornando futeis os outros
-padraoUbuntu
+removendoPacotes
 
 echo "removendo pacotes .deb"
 apt-get remove evince -y                # remove leitor de PDF antigo
