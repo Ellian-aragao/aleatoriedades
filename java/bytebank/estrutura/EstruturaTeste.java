@@ -1,21 +1,30 @@
 package estrutura;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+
 import contas.Conta;
 import contas.tipo.ContaCorrente;
+import contas.tipo.ContaPoupanca;
 
 public class EstruturaTeste {
     public static void main(String[] args) {
-        Conta estruturaDeContas[] = new Conta[5];
         
-        for (int i = 0; i < estruturaDeContas.length; i++) {
-            ContaCorrente cc = new ContaCorrente(i + 1, i + 1025);
-            estruturaDeContas[i] = cc;
-        }
+        // lista organizada como vetor
+        ArrayList<Conta> contas = new ArrayList<Conta>();
+        // lista organizada atraves de ponteiros
+        LinkedList<Conta> contas1 = new LinkedList<Conta>();
+        
 
-        System.out.println("_________MOSTRANDO CONTAS__________");
+        Conta cc = new ContaCorrente(1, 2525);
+        Conta cp = new ContaPoupanca(1, 2626);
 
-        for (int i = 0; i < estruturaDeContas.length; i++) {
-            System.out.println(estruturaDeContas[i]);
-        }
+        // possuem os mesmos métodos
+        contas.add(cc);
+        contas1.add(cc);
+        contas.add(cp);
+        contas1.add(cp);
+
+
     }
 }
