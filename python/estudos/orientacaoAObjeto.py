@@ -1,6 +1,7 @@
 class perfil(object):
     'teste de classe perfil'
     
+    # construtor
     def __init__(self,nome,numero,empresa):
         self.nome = nome
         self.numero = numero
