@@ -20,15 +20,20 @@ class perfil(object):
 class perfil_vip(perfil):
     'herda de perfil e incrementa'
     
+    def __init__(self, nome, numero, empresa, apelido):
+        super().__init__(nome, numero, empresa)
+        self.apelido = apelido
+    
     def obter_creditos(self):
         return self.getCurtidas() * 10
         
     def imprime(self):
         super().imprime()
+        print('apelido: {}'.format(self.apelido))
         print('credito = R${:.2f}'.format(self.obter_creditos()))
     
 
 # teste com o objeto
-user = perfil_vip('robertinho','84028922','caelum')
+user = perfil_vip('roberto','84028922','caelum','dollynho')
 user.curtir()
 user.imprime()
