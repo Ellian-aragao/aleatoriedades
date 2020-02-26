@@ -1,4 +1,4 @@
-package contas;
+package exception;
 
 public class SaldoInsuficienteException extends RuntimeException {
 

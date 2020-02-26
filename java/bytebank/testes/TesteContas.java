@@ -1,7 +1,8 @@
 package testes;
 
-import contas.*;
+import contas.Conta;
 import contas.tipo.*;
+import exception.SaldoInsuficienteException;
 
 public class TesteContas {
     public static void main (String[] args) {

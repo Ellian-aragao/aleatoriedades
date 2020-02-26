@@ -1,5 +1,7 @@
 package contas;
 
+import exception.SaldoInsuficienteException;
+
 public abstract class Conta {
     protected double saldo;
     private int agencia;
