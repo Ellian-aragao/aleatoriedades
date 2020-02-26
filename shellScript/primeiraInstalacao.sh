@@ -14,7 +14,7 @@ apt-get install git -y                  # gerenciador de versionamento
 apt-get install qbittorrent -y          # donwload de torrent
 apt-get install wireshark -y            # analisador de pacotes da rede
 apt-get install calibre -y              # editor e leitor de ebooks
-apt-get install python3-pip		# gerenciador de pacotes python
+apt-get install python3-pip		        # gerenciador de pacotes python
 apt-get install default-jdk -y          # pacote java atual
 
 
