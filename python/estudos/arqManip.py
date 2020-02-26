@@ -1,5 +1,5 @@
 import re
 
-palavra = 'Python or Cython, maybe Jython'
-texto = re.findall('[A-Za-z]y',palavra)
+palavra = 'Python, Cython or Jython'
+texto = re.findall('[A-Za-z]y[A-Za-z]+',palavra)
 print(texto)
