@@ -17,14 +17,18 @@ class perfil(object):
     def getCurtidas(self):
         return self.__curtidas
     
-"""
+class perfil_vip(perfil):
+    'herda de perfil e incrementa'
+    
+    def obter_creditos(self):
+        return self.getCurtidas() * 10
+        
+    def imprime(self):
+        super().imprime()
+        print('credito = R${:.2f}'.format(self.obter_creditos()))
+    
+
 # teste com o objeto
-user = perfil('robertinho','84028922','caelum')
-print ('curtidas: {}'.format(user.getCurtidas()))
+user = perfil_vip('robertinho','84028922','caelum')
 user.curtir()
 user.imprime()
-for i in range(10):
-    user.curtir()
-print('----------------------------')
-user.imprime()
-"""
