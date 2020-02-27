@@ -1,7 +1,6 @@
 package estrutura;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import contas.*;
@@ -40,23 +39,8 @@ public class lambda {
         lista.add(cc3);
         lista.add(cc4);
 
-        lista.sort(new Comparator<Conta>() { // geração de classe anonima
-                @Override
-                public int compare(Conta c1, Conta c2) {
-                    return c1.getCliente().getNome().compareTo(c2.getCliente().getNome());
-                }
-            }
-        );
+        lista.sort((c1, c2) -> c1.getCliente().getNome().compareTo(c2.getCliente().getNome()));
 
-        Comparador<Conta> comp = new Comparador<Conta>() { // classe anônima
-            @Override
-            public int compare(Conta c1, Conta c2) {
-                return c1.getTitular().getNome().compareTo(c2.getTitular().getNome());
-            }
-        };
-
-        for (Conta conta : lista) {
-            System.out.println(conta.getCliente().getNome());
-        }
+        lista.forEach((conta) -> System.out.println(conta.getCliente().getNome()));
     }
 }
