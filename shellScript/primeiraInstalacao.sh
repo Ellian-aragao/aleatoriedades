@@ -1,11 +1,8 @@
 #!/bin/bash
-
 <<.deb
     nesta parte encontram-se alguns programas que não haviam pacotes snaps 
     e então foram baixados pelos repositórios padrões do ubuntu
 .deb
-
-echo "instalando pacotes .deb"
 apt-get install gcc -y                  # compilador C
 apt-get install virtualbox -y           # maquina virtual
 apt-get install gnome-tweak-tool -y     # configurar aparencia do gnome
@@ -22,9 +19,9 @@ apt-get install default-jdk -y          # pacote java atual
     usando a facilidade de gerenciar pacotes snaps visto a constante de atualizações
     e independência do sistema tornando aplicável a qualquer distro
 snaps
-
-echo "instalando pacotes snap"
 snap install code --classic             # editor de codigos vscode
+snap install android-studio --classic   # IDE android
+snap install arduino                    # IDE arduino
 snap install okular                     # leitor de PDF
 snap install vlc                        # reprodutor de video e musica
 snap install gimp                       # composição de fotos
@@ -32,39 +29,24 @@ snap install darktable                  # editor de fotos
 snap install inkscape                   # editor vetorial
 snap install discord        			# servidor de voz
 snap install freac --beta		        # conversor de codec música
-snap install arduino                    # IDE arduino
 snap install audacity                   # edição de audio
 snap install xmind                      # mapa mental
 snap install kdenlive                   # editor de videos
 snap install obs-studio                 # gravador de tela
 
 
-<<appImage
-    programas portaveis para qualquer distros
-appImage
-
-# gravador de pendrive bootável
-wget https://github.com/balena-io/etcher/releases/download/v1.5.79/balena-etcher-electron-1.5.79-linux-x64.zip
-
-
 <<timeShift
     programa para recuperação de imagem do sistema, cria snapshots do sistema para recuperação do sistema por completo
-
+timeShift
 add-apt-repository -y ppa:teejee2008/timeshift
 apt-get update
 apt-get install timeshift
-
-timeShift
-
-
 
 
 <<removendoPacotes
     remove os pacotes básicos do ubuntu para utilização unica dos pacotes baixados 
     dos quais me são mais agradáveis a usabilidade deles tornando futeis os outros
 removendoPacotes
-
-echo "removendo pacotes .deb"
 apt-get remove evince -y                # remove leitor de PDF antigo
 apt-get remove aisleriot -y             # paciência
 apt-get remove gnome-mahjongg -y        # jogo
@@ -78,12 +60,8 @@ apt-get remove transmission-gtk -y      # torrent nativo ubuntu
 <<atualizando
     atualizando o sistema por completo e removendo dependências do sistema
 atualizando
-
-echo "baixando e atualizando os pacotes"
 apt-get update && apt-get upgrade -y
-echo "limpando cache"
 apt autoremove -y && apt autoclean -y
-echo "terminada a atualização"
 
 
 <<extensãoGnome
@@ -94,3 +72,12 @@ echo "terminada a atualização"
     No Title Bar
     https://extensions.gnome.org/extension/1267/no-title-bar/
 extensãoGnome
+
+<<appImage
+    programas portaveis para qualquer distros
+appImage
+# gravador de pendrive bootável --> BalenaEtcher
+wget https://github.com/balena-io/etcher/releases/download/v1.5.79/balena-etcher-electron-1.5.79-linux-x64.zip
+
+# visual studio portable
+wget https://github.com/zilti/code-oss.AppImage/releases/download/continuous/Code_OSS-x86_64.AppImage
