@@ -48,6 +48,13 @@ public class lambda {
             }
         );
 
+        Comparador<Conta> comp = new Comparador<Conta>() { // classe anônima
+            @Override
+            public int compare(Conta c1, Conta c2) {
+                return c1.getTitular().getNome().compareTo(c2.getTitular().getNome());
+            }
+        };
+
         for (Conta conta : lista) {
             System.out.println(conta.getCliente().getNome());
         }
