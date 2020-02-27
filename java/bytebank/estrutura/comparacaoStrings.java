@@ -40,8 +40,7 @@ public class comparacaoStrings {
         lista.add(cc3);
         lista.add(cc4);
 
-        TitularDaContaComparator comparator = new TitularDaContaComparator();
-        lista.sort(comparator);
+        lista.sort(new TitularDaContaComparator());
         
         for (Conta conta : lista) {
             System.out.println(conta.getCliente().getNome());
