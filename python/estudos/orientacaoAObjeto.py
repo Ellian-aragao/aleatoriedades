@@ -17,10 +17,22 @@ class perfil(object):
     def getCurtidas(self):
         return self.__curtidas
     
+    @classmethod
+    def gerar_perfis(cls, nome_do_arquivo):
+        arquivo = open(nome_do_arquivo,'r')
+        linhas = arquivo.readlines()
+        perfis = []
+        for linha in linhas:
+            palavras = linha.replace('\n','').split(',')
+            perfis.append(cls(*palavras))
+        arquivo.close()
+        return perfis
+
+    
 class perfil_vip(perfil):
     'herda de perfil e incrementa'
     
-    def __init__(self, nome, numero, empresa, apelido):
+    def __init__(self, nome, numero, empresa, apelido = ''):
         super().__init__(nome, numero, empresa)
         self.apelido = apelido
     
@@ -31,9 +43,9 @@ class perfil_vip(perfil):
         super().imprime()
         print('apelido: {}'.format(self.apelido))
         print('credito = R${:.2f}'.format(self.obter_creditos()))
-    
 
-# teste com o objeto
-user = perfil_vip('roberto','84028922','caelum','dollynho')
-user.curtir()
-user.imprime()
+
+perfis = perfil_vip.gerar_perfis('db.csv')
+for item in perfis:
+    item.imprime()
+    print('-----------')
