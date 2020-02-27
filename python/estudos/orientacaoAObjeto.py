@@ -3,6 +3,8 @@ class perfil(object):
     
     # construtor
     def __init__(self,nome,numero,empresa):
+        if len(nome) < 3:
+            raise ValueError('o nome deve ter ao menos 3 caracteres')
         self.nome = nome
         self.numero = numero
         self.empresa = empresa
@@ -24,6 +26,8 @@ class perfil(object):
         perfis = []
         for linha in linhas:
             palavras = linha.replace('\n','').split(',')
+            if len(palavras) is not 3:
+                raise ValueError('as linhas no arquivo {} devem ter 3 valores'.format(nome_do_arquivo))
             perfis.append(cls(*palavras))
         arquivo.close()
         return perfis
@@ -44,8 +48,9 @@ class perfil_vip(perfil):
         print('apelido: {}'.format(self.apelido))
         print('credito = R${:.2f}'.format(self.obter_creditos()))
 
-
+"""
 perfis = perfil_vip.gerar_perfis('db.csv')
 for item in perfis:
     item.imprime()
     print('-----------')
+"""
