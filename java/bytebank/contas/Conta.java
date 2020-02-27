@@ -2,7 +2,7 @@ package contas;
 
 import exception.SaldoInsuficienteException;
 
-public abstract class Conta {
+public abstract class Conta extends Object implements Comparable<Conta> {
     protected double saldo;
     private int agencia;
     private int numero;
@@ -65,5 +65,10 @@ public abstract class Conta {
 
     public void setTitular(Cliente titular) {
         this.titular = titular;
+    }
+
+    @Override
+    public int compareTo(Conta outraConta) {
+        return Double.compare(this.saldo, outraConta.saldo);
     }
 }

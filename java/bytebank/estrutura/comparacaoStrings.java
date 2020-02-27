@@ -1,6 +1,7 @@
 package estrutura;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -40,7 +41,10 @@ public class comparacaoStrings {
         lista.add(cc3);
         lista.add(cc4);
 
-        lista.sort(new TitularDaContaComparator());
+        lista.sort(null); // utilizando a ordem natural
+        //lista.sort(new TitularDaContaComparator());
+        //Collections.sort(lista,new TitularDaContaComparator());
+        //Collections.sort(lista);
         
         for (Conta conta : lista) {
             System.out.println(conta.getCliente().getNome());
