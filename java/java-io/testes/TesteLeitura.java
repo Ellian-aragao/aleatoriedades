@@ -10,7 +10,6 @@ import java.io.Reader;
 public class TesteLeitura {
     public static void main(String[] args) throws IOException {
 
-        // system.{in,out}
         InputStream binario = new FileInputStream("aleatoriedades/java/java-io/texto.txt");
         Reader interpretador = new InputStreamReader(binario);
         BufferedReader leitorDeLinhas = new BufferedReader(interpretador);
