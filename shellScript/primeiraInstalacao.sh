@@ -43,9 +43,24 @@ apt-get update
 apt-get install timeshift
 
 
-<<lutris
-    roda alguns jogos no linux, tal como LOL
-lutris
+<<jogos
+    
+jogos
+add-apt-repository ppa:graphics-drivers/ppa
+dpkg --add-architecture i386
+apt install libvulkan1 libvulkan1:i386
+
+wget -nc https://dl.winehq.org/wine-builds/winehq.key
+apt-key add winehq.key
+apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ eoan main' #muda conforme a versão do ubuntu, bionic
+apt-get update
+apt-get install --install-recommends winehq-stable
+
+wget -q "http://deb.playonlinux.com/public.gpg" -O- | sudo apt-key add -
+sudo wget http://deb.playonlinux.com/playonlinux_cosmic.list -O /etc/apt/sources.list.d/playonlinux.list #muda conforme a versão do ubuntu, bionic
+sudo apt-get update
+sudo apt-get install playonlinux
+
 add-apt-repository ppa:lutris-team/lutris
 apt-get update
 apt-get install lutris
