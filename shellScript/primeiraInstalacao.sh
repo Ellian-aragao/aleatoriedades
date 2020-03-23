@@ -43,6 +43,14 @@ apt-get update
 apt-get install timeshift
 
 
+<<lutris
+    roda alguns jogos no linux, tal como LOL
+lutris
+add-apt-repository ppa:lutris-team/lutris
+apt-get update
+apt-get install lutris
+
+
 <<removendoPacotes
     remove os pacotes básicos do ubuntu para utilização unica dos pacotes baixados 
     dos quais me são mais agradáveis a usabilidade deles tornando futeis os outros
