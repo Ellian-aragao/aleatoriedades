@@ -11,9 +11,9 @@ apt-get install git -y                  # gerenciador de versionamento
 apt-get install qbittorrent -y          # donwload de torrent
 apt-get install wireshark -y            # analisador de pacotes da rede
 apt-get install calibre -y              # editor e leitor de ebooks
-apt-get install python3-pip		# gerenciador de pacotes python
+apt-get install python3-pip             # gerenciador de pacotes python
 apt-get install default-jdk -y          # pacote java atual
-apt-get install frietzing -y		# montagem circuitos
+apt-get install frietzing -y            # montagem circuitos
 
 <<snaps
     usando a facilidade de gerenciar pacotes snaps visto a constante de atualizações
@@ -27,13 +27,13 @@ snap install vlc                        # reprodutor de video e musica
 snap install gimp                       # composição de fotos
 snap install darktable                  # editor de fotos
 snap install inkscape                   # editor vetorial
-snap install discord        		# servidor de voz
-snap install freac --beta		# conversor de codec música
+snap install discord                    # servidor de voz
+snap install freac --beta               # conversor de codec música
 snap install audacity                   # edição de audio
 snap install xmind                      # mapa mental
 snap install kdenlive                   # editor de videos
 snap install obs-studio                 # gravador de tela
-snap install drawio			# fluxogramas
+snap install drawio                     # fluxogramas
 
 
 <<timeShift
