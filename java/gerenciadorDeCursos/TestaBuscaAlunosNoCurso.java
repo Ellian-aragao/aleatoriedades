@@ -1,4 +1,4 @@
-public class TestaCursoComAluno {
+public class TestaBuscaAlunosNoCurso {
     public static void main(String[] args) {
         Curso javaColencoes = new Curso("dominando as coleções do java", "Paulo Silveira");
         javaColencoes.adiciona(new Aula("trabalhando com ArrayList", 21));
@@ -12,8 +12,8 @@ public class TestaCursoComAluno {
         javaColencoes.matricula(a2);
         javaColencoes.matricula(a3);
 
-        javaColencoes.getAlunos().forEach(a -> System.out.println(a));
-
-        System.out.println(javaColencoes.estaMatriculado(a1));
+        System.out.println("quem é o aluno com matricula: 15249");
+        Aluno aluno = javaColencoes.buscaAlunoMatriculado(15249);
+        System.out.println(aluno);
     }
 }

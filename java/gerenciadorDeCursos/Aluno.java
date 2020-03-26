@@ -8,7 +8,7 @@ public class Aluno {
     }
     
     public String getNome() {
-        return nome;
+        return this.nome;
     }
     public int getNumeroDaMatricula() {
         return numeroDaMatricula;
