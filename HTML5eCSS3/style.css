@@ -1,8 +1,39 @@
-body {
+header {
+    background: #cccccc;
+    padding: 20px;
 }
 
-.titulo_principal {
-    padding-left: 20px;
+.caixaDoTopo {
+    position: relative;
+    width: 1000px;
+    margin: 0 auto;
+}
+
+nav {
+    position: absolute;
+    top: 110px;
+    right: 50px;
+}
+nav ul {
+    width: 100%;
+}
+
+nav li {
+    display: inline;
+    margin: 0 0 0 15px;
+}
+
+nav a {
+    text-transform: uppercase;
+    color: black;
+    font-weight: bold;
+    font-size: 22px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: #c78c19;
+    text-decoration: underline;
 }
 
 #banner {
