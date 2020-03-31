@@ -80,7 +80,7 @@ em strong {
 .beneficios {
     width: 100%;
     background: #ffffff;
-    padding: 20px;
+    padding: 5px 0 20px 0;
 }
 
 ul {
@@ -99,4 +99,14 @@ ul {
 
 .beneficios-imagem {
     width: 50%;
+}
+
+footer {
+    text-align: center;
+    background:url(bg.jpg);
+}
+.copyright {
+    color: #ffffff;
+    font-size: 13px;
+    padding-bottom: 10px ;
 }
