@@ -1,39 +1,35 @@
-// verifica se o botão foi clicado
 document.querySelector("#adicionar-paciente").addEventListener("click", function(event) {
     event.preventDefault()
-    var form = document.querySelector("#formularioDeAdicao")
-    // salva os valores do formulario
-    var nome    = form.nome.value
-    var peso    = form.peso.value
-    var altura  = form.altura.value
-    var gordura = form.gordura.value
-    // cria os elementos para serem injetados no HTML
-    var linha     = document.createElement("tr")
-    var nometd    = document.createElement("td")
-    var pesotd    = document.createElement("td")
-    var alturatd  = document.createElement("td")
-    var gorduratd = document.createElement("td")
-    var imctd     = document.createElement("td")
-    // add classe nos itens do paciente
-    linha.classList.add("paciente")
-    nometd.classList.add("info-nome")
-    pesotd.classList.add("info-peso")
-    alturatd.classList.add("info-altura")
-    gorduratd.classList.add("info-gordura")
-    imctd.classList.add("info-imc")    
-    // salva o conteúdo nas tags HTML
-    nometd.textContent    = nome
-    pesotd.textContent    = peso
-    alturatd.textContent  = altura
-    gorduratd.textContent = gordura    
-    // add as colunas na linha da tabela
-    linha.appendChild(nometd)
-    linha.appendChild(pesotd)
-    linha.appendChild(alturatd)
-    linha.appendChild(gorduratd)
-    linha.appendChild(imctd)
-    // add a linha linha da tabela no HTML
-    document.querySelector("#tabela-pacientes").appendChild(linha)
-    // add o imc do novo paciente
-    calcImc(linha)
+    var dadosDoFormulario = document.querySelector("#formularioDeAdicao")
+    var linhaDoPaciente = criaTrDoPaciente(criaPacienteDoFormulario(dadosDoFormulario))
+    document.querySelector("#tabela-pacientes").appendChild(linhaDoPaciente)
+    dadosDoFormulario.reset()
 })
+
+function criaPacienteDoFormulario(form) {
+    var paciente = {
+        nome:    form.nome.value,
+        peso:    form.peso.value,
+        altura:  form.altura.value,
+        gordura: form.gordura.value,
+        imc:     calcImc(form.peso.value, form.altura.value)
+    }
+    return paciente
+}
+
+function criaTd(classhtml, value) {
+    var coluna = document.createElement("td")
+    coluna.classList.add(classhtml)
+    coluna.textContent = value
+    return coluna
+}
+
+function criaTrDoPaciente(paciente) {
+    var linha = document.createElement("tr")
+    linha.appendChild(criaTd("info-nome", paciente.nome))
+    linha.appendChild(criaTd("info-peso", paciente.peso))
+    linha.appendChild(criaTd("info-altura", paciente.altura))
+    linha.appendChild(criaTd("info-gordura", paciente.gordura))
+    linha.appendChild(criaTd("info-imc", paciente.imc))
+    return linha
+}
