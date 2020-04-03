@@ -1,6 +1,6 @@
 #!/bin/bash
 <<.deb
-    nesta parte encontram-se alguns programas que não haviam pacotes snaps 
+    nesta parte encontram-se alguns programas que não haviam pacotes snaps
     e então foram baixados pelos repositórios padrões do ubuntu
 .deb
 apt-get install gcc -y                  # compilador C
@@ -20,6 +20,9 @@ apt-get install frietzing -y            # montagem circuitos
     e independência do sistema tornando aplicável a qualquer distro
 snaps
 snap install code --classic             # editor de codigos vscode
+snap install atom --classic             # editor de códigos para modificações rápidas
+snap install eclipse --classic          # IDE para java
+snap install netbeans --classic         # IDE para java interface gráfica
 snap install android-studio --classic   # IDE android
 snap install arduino                    # IDE arduino
 snap install okular                     # leitor de PDF
@@ -45,7 +48,7 @@ apt-get install timeshift
 
 
 <<jogos
-    
+
 jogos
 add-apt-repository ppa:graphics-drivers/ppa
 dpkg --add-architecture i386
@@ -66,7 +69,7 @@ apt-get install lutris -y
 
 
 <<removendoPacotes
-    remove os pacotes básicos do ubuntu para utilização unica dos pacotes baixados 
+    remove os pacotes básicos do ubuntu para utilização unica dos pacotes baixados
     dos quais me são mais agradáveis a usabilidade deles tornando futeis os outros
 removendoPacotes
 apt-get remove evince -y                # remove leitor de PDF antigo
@@ -77,6 +80,7 @@ apt-get remove gnome-sudoku -y          # jogo
 apt-get remove gnome-todo -y            # lista todo
 apt-get remove totem -y                 # reprodutor de videos
 apt-get remove transmission-gtk -y      # torrent nativo ubuntu
+apt-get remove gedit -y                 # removendo editor de notas padrão ubuntu
 
 
 <<atualizando
