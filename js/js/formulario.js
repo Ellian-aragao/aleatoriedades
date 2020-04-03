@@ -26,6 +26,7 @@ function criaTd(classhtml, value) {
 
 function criaTrDoPaciente(paciente) {
     var linha = document.createElement("tr")
+    linha.classList.add("paciente")
     linha.appendChild(criaTd("info-nome", paciente.nome))
     linha.appendChild(criaTd("info-peso", paciente.peso))
     linha.appendChild(criaTd("info-altura", paciente.altura))
