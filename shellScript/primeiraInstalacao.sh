@@ -20,7 +20,6 @@ apt-get install frietzing -y            # montagem circuitos
     e independência do sistema tornando aplicável a qualquer distro
 snaps
 snap install code --classic             # editor de codigos vscode
-snap install atom --classic             # editor de códigos para modificações rápidas
 snap install eclipse --classic          # IDE para java
 snap install netbeans --classic         # IDE para java interface gráfica
 snap install android-studio --classic   # IDE android
