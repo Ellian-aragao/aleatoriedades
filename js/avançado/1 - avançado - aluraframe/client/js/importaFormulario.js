@@ -1,4 +1,4 @@
-document.querySelector(".btn-primary").addEventListener('submit', event => {
+document.querySelector(".btn-primary").addEventListener('click', event => {
     event.preventDefault()
     formulario = document.querySelector(".form")
     dadosNegociacao = importaValoresFormulario(formulario)
