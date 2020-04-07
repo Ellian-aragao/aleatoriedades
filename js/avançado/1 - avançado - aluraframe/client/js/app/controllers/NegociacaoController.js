@@ -21,10 +21,13 @@ class NegociacaoController {
     
     adiciona(event) {
         event.preventDefault()
+
         this._listaNegociacoes.adiciona(this._criaNegociacao())
-        this._negociacaoView.update(this._listaNegociacoes)
         this._mensagem.texto = 'Negociação adicionada com sucesso'
+        
+        this._negociacaoView.update(this._listaNegociacoes)
         this._mensagemView.update(this._mensagem)
+
         this._limpaFormulario()
     }
 
@@ -37,10 +40,9 @@ class NegociacaoController {
     }
 
     _limpaFormulario() {
-        this._data = ''
-        this._quantidade = 1
-        this._valor = 0.0
-
-        // this._data.focus()
+        this._formData.value = ''
+        this._formQuantidade.value = 1
+        this._formValor.value = 0.0
+        this._formData.focus()
     }
 }
