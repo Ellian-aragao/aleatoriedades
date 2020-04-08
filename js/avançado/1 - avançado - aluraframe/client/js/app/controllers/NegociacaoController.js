@@ -9,13 +9,25 @@ class NegociacaoController {
         this._formValor = formulario.valor
 
 
-        this._listaNegociacoes = new ListaNegociacao()
         this._mensagem = new Mensagem()
+        this._listaNegociacoes = new ListaNegociacao( 
+            model => this._negociacaoView.update(model)
+        )
         
         this._negociacaoView = new NegociacoesView($("#negociacoesView"))
         this._mensagemView = new MensagemView($('#mensagemView'))
         
-        this._negociacaoView.update(this._listaNegociacoes)
+        // this._negociacaoView.update(this._listaNegociacoes)
+        this._mensagemView.update(this._mensagem)
+    }
+
+    apaga(event) {
+        event.preventDefault()
+
+        this._listaNegociacoes.esvazia()
+        this._mensagem.texto = 'Negociações apagadas com sucesso'
+        
+        // this._negociacaoView.update(this._listaNegociacoes)
         this._mensagemView.update(this._mensagem)
     }
     
@@ -25,7 +37,7 @@ class NegociacaoController {
         this._listaNegociacoes.adiciona(this._criaNegociacao())
         this._mensagem.texto = 'Negociação adicionada com sucesso'
         
-        this._negociacaoView.update(this._listaNegociacoes)
+        // this._negociacaoView.update(this._listaNegociacoes)
         this._mensagemView.update(this._mensagem)
 
         this._limpaFormulario()
