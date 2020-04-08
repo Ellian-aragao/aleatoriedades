@@ -25,6 +25,11 @@ class NegociacaoController {
                     }
                 }
                 return Reflect.get(target, prop, receiver);
+                /*
+                O target é o objeto real que é encapsulado pela proxy.
+                O prop é a propriedade em si, que está sendo lida naquele momento.
+                O receiver é a referência ao próprio proxy.
+                */
             }
         });
         
