@@ -18,8 +18,7 @@ int copy(char* inputPath, char* outputPath) {
 FILE* fileDeclaration(const char *path, const char *mode) {
     FILE *ptr = fopen(path, mode);
     if (ptr == NULL) {
-        puts("error");
-        exit(1);
+        perror ("error to open file");
     }
     return ptr;
 }
@@ -32,12 +31,13 @@ int main(int argc, char* argv[]) {
 
     FILE *ptr = fileDeclaration(argv[1], READ);
 
-    while (ptr)
-    {
-        /* code */
-    }
+    // unsigned long n = 0;
+    // while (!feof(ptr)){
+    //     n++;
+    //     (char*)ptr++;
+    // }
+    // printf("%ld\n",n);
     
-
     fclose(ptr);
 
     memcpy(name_cpy, name, tam_name);
