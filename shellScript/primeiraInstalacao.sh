@@ -12,6 +12,7 @@ apt-get install qbittorrent -y          # donwload de torrent
 apt-get install wireshark -y            # analisador de pacotes da rede
 apt-get install calibre -y              # editor e leitor de ebooks
 apt-get install python3-pip             # gerenciador de pacotes python
+apt-get install php7.4                  # interpretador php
 apt-get install default-jdk -y          # pacote java atual
 apt-get install frietzing -y            # montagem circuitos
 
@@ -47,7 +48,7 @@ apt-get install timeshift
 
 
 <<jogos
-
+    graficos para os jogos e 
 jogos
 add-apt-repository ppa:graphics-drivers/ppa
 dpkg --add-architecture i386
