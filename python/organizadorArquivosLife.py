@@ -26,20 +26,28 @@ def fileAttributesExtractor(fileName):
             'contract': arrayAttributes[1],
             'description': arrayAttributes[2],
             'cost': arrayAttributes[3],
-            'date': arrayAttributes[4]
+            'date': processingDate(arrayAttributes[4])
         }
     else:
         pdf = {
             'bank': arrayAttributes[0],
             'description': arrayAttributes[1],
             'cost': arrayAttributes[2],
-            'date': arrayAttributes[3]
+            'date': processingDate(arrayAttributes[3])
         }
     return pdf
 
+def processingDate(dateWithExtension):
+    arrayDate = dateWithExtension.split('.')
+    date = {
+        'day': arrayDate[0],
+        'month': arrayDate[1],
+        'year': arrayDate[2]
+    }
+    return date
+
 varPath = '/home/ellian/Documents/lifecon/orgDocuments/arqu/exemplo'
-# exploreFiles(varPath)
 
 array = os.listdir(varPath)
-
-print(fileAttributesExtractor(array[-1]))
+pdf = fileAttributesExtractor(array[-1])
+print(pdf['date'])
