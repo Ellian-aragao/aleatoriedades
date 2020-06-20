@@ -1,15 +1,24 @@
 import os
 
-
-def exploreFiles(absolute_path):
+#transferir o path do arquivo
+def findFiles(absolute_path):
     arrayDirOrFiles = os.listdir(absolute_path)
+    files = []
     for oneFileOrDir in arrayDirOrFiles:
         fullPath = '{}/{}'.format(absolute_path, oneFileOrDir)
         if os.path.isdir(fullPath):
-            print('dir -> {}'.format(oneFileOrDir))
-            exploreFiles(fullPath)
+            array = findFiles(fullPath)
+            for item in array:
+                files.append(item)
         else:
-            print('file -> {}'.format(oneFileOrDir))
+            files.append(oneFileOrDir)
+    return files
+
+
+# def concatPath(*args):
+    
+#     for path in args:
+
 
 def fileAttributesExtractor(fileName):
     arrayAttributes = fileName.split('-')
@@ -37,6 +46,7 @@ def fileAttributesExtractor(fileName):
         }
     return pdf
 
+
 def processingDate(dateWithExtension):
     arrayDate = dateWithExtension.split('.')
     date = {
@@ -46,8 +56,8 @@ def processingDate(dateWithExtension):
     }
     return date
 
-varPath = '/home/ellian/Documents/lifecon/orgDocuments/arqu/exemplo'
 
-array = os.listdir(varPath)
-pdf = fileAttributesExtractor(array[-1])
-print(pdf['date'])
+path = '/home/ellian/Documents/lifecon/orgDocuments/arqu/exemplo'
+array = findFiles(path)
+for item in array:
+    print(item)
