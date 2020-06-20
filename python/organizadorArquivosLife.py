@@ -11,33 +11,35 @@ def exploreFiles(absolute_path):
         else:
             print('file -> {}'.format(oneFileOrDir))
 
+def fileAttributesExtractor(fileName):
+    arrayAttributes = fileName.split('-')
+    pdf = {
+        'bank': '',
+        'contract': '',
+        'description': '',
+        'cost': '',
+        'date': ''
+    }
+    if len(arrayAttributes) == 5:
+        pdf = {
+            'bank': arrayAttributes[0],
+            'contract': arrayAttributes[1],
+            'description': arrayAttributes[2],
+            'cost': arrayAttributes[3],
+            'date': arrayAttributes[4]
+        }
+    else:
+        pdf = {
+            'bank': arrayAttributes[0],
+            'description': arrayAttributes[1],
+            'cost': arrayAttributes[2],
+            'date': arrayAttributes[3]
+        }
+    return pdf
 
 varPath = '/home/ellian/Documents/lifecon/orgDocuments/arqu/exemplo'
 # exploreFiles(varPath)
 
-
-# tratamento do nome do arquivo
 array = os.listdir(varPath)
-subArray = array[-1].split('-')
-pdf = {
-    'bank': '',
-    'contract': '',
-    'description': '',
-    'cost': '',
-    'date': ''
-}
-if len(subArray) == 5:
-    pdf = {
-        'bank': subArray[0],
-        'contract': subArray[1],
-        'description': subArray[2],
-        'cost': subArray[3],
-        'date': subArray[4]
-    }
-else:
-    pdf = {
-        'bank': subArray[0],
-        'description': subArray[1],
-        'cost': subArray[2],
-        'date': subArray[3]
-    }
+
+print(fileAttributesExtractor(array[-1]))
