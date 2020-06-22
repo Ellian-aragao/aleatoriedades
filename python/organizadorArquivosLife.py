@@ -1,6 +1,23 @@
 import os
 
-#transferir o path do arquivo
+
+class FilesPdf:
+    def __init__(self, fullPath):
+        self.fullPath = fullPath
+
+    def pathFileSeparate(self):
+        print(self.fullPath.rindex('/'))
+        arrayFullPath = self.fullPath.rsplit() rsplit(56)
+        print(arrayFullPath)
+        self.nameFile = arrayFullPath[-1]
+        arrayFullPath.pop(-1)
+        self.pathDir = '/'.join(arrayFullPath)
+
+
+    def getFullPath(self):
+        return self.fullPath
+
+
 def findFiles(absolute_path):
     arrayDirOrFiles = os.listdir(absolute_path)
     files = []
@@ -11,13 +28,8 @@ def findFiles(absolute_path):
             for item in array:
                 files.append(item)
         else:
-            files.append(oneFileOrDir)
+            files.append(fullPath)
     return files
-
-
-# def concatPath(*args):
-    
-#     for path in args:
 
 
 def fileAttributesExtractor(fileName):
@@ -59,5 +71,5 @@ def processingDate(dateWithExtension):
 
 path = '/home/ellian/Documents/lifecon/orgDocuments/arqu/exemplo'
 array = findFiles(path)
-for item in array:
-    print(item)
+file = FilesPdf(array[-1])
+file.pathFileSeparate()
