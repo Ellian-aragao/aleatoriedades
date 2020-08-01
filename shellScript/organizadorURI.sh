@@ -30,7 +30,7 @@ verifica_diretorio(){
 
 echo "Organizando códigos para o URI"
 echo ""
-cd ../../organizacao
+cd ../../URI
 
 sourceExtecions=( "c" "cpp" "java" "py" )
 i=0
