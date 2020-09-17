@@ -1,0 +1,7 @@
+<div class="mt-3">
+  <app-interpolation></app-interpolation>
+  <app-class-style></app-class-style>
+  <app-event-binding></app-event-binding>
+  <app-two-way-data-binding></app-two-way-data-binding>
+  <app-contador [value]="initialNumberContador" (changedValue)="alertValue($event.value)"></app-contador>
+</div>
