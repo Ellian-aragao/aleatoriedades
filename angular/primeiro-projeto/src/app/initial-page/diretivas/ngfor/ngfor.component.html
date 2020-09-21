@@ -3,7 +3,7 @@
   Lista de Cursos
   <ul>
     <li *ngFor="let curso of cursos">
-      {{ curso }}
+      {{ curso | camelCase}}
     </li>
   </ul>
 </div>

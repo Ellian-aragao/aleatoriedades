@@ -5,13 +5,16 @@ import { ContadorComponent } from './contador/contador.component';
 import { FundoAmareloDirective } from './fundo-amarelo.directive';
 import { HighligthMouseDirective } from './highligth-mouse.directive';
 import { NgElseDirective } from './ng-else.directive';
+import { CamelCasePipe } from './camel-case.pipe';
 
 @NgModule({
   declarations: [
     ContadorComponent,
     FundoAmareloDirective,
     HighligthMouseDirective,
-    NgElseDirective],
+    NgElseDirective,
+    CamelCasePipe
+  ],
   imports: [
     CommonModule
   ],
@@ -19,7 +22,8 @@ import { NgElseDirective } from './ng-else.directive';
     ContadorComponent,
     FundoAmareloDirective,
     HighligthMouseDirective,
-    NgElseDirective
+    NgElseDirective,
+    CamelCasePipe
   ]
 })
 export class SharedModule { }

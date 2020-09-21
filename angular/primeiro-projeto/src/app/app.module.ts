@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { InitialPageModule } from './initial-page/initial-page.module';
-import { SharedModule } from './shared/shared.module';
+import { CursosService } from './services/cursos.service';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,6 @@ import { SharedModule } from './shared/shared.module';
     FormsModule,
     InitialPageModule,
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
