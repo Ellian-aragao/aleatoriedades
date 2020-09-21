@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-contador',
@@ -23,7 +23,7 @@ export class ContadorComponent {
     this.eventEmitter(--this.value);
   }
 
-  eventEmitter(value:number):void {
+  eventEmitter(value: number): void {
     this.changedValue.emit({value});
   }
 }

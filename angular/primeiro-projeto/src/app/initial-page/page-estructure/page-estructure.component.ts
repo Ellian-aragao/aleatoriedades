@@ -11,7 +11,7 @@ export class PageEstructureComponent {
 
   initialNumberContador = 10;
 
-  alertValue(value:number):void {
+  alertValue(value: number): void {
     console.log(`o valor atual é ${value}`);
   }
 }

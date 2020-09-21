@@ -1,0 +1,27 @@
+<div>
+  <h3>Usando diretivas customizadas</h3>
+
+  <p appFundoAmarelo class="mt-3">
+    texto com fundo amarelo através de diretiva customizada
+  </p>
+
+  <p appHighligthMouse>
+    usando diretiva customizada para interação com mouse
+  </p>
+
+  <div>
+    <h5>Diretiva customizada ngElse</h5>
+  
+    <div *ngIf="exibe">
+      conteúdo sendo exibido
+    </div>
+  
+    <div *ngElse="exibe">
+      conteúdo sendo escondido
+    </div>
+  
+    <button class="mt-2 btn btn-secondary" style="width: 8rem;" (click)="mudaEstado()">
+      Muda Estado
+    </button>
+  </div>
+</div>
