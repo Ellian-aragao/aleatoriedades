@@ -6,13 +6,16 @@ import { Injectable } from '@angular/core';
 export class CursosService {
 
   cursos: string[] = [
-    'Git',
-    'Github/Gitlab',
-    'C/C++',
-    'Java',
-    'Python',
-    'Spring Boot',
-    'JDBC'
+    'git',
+    'github',
+    'gitlab',
+    'c',
+    'c++',
+    'java',
+    'python',
+    'spring boot',
+    'JDBC',
+    'JPA',
   ];
 
   getCursos(): string[] {

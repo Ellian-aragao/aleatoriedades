@@ -6,11 +6,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class CamelCasePipe implements PipeTransform {
 
   transform(value: string): string {
-    const values = value.split(' ');
     let result = '';
-    values.forEach((palavra: string) => {
-      result += this.capitalize(palavra);
-    });
+    value.split(' ')
+      .forEach(palavras => {
+        result += this.capitalize(palavras) + ' ';
+      });
     return result;
   }
 

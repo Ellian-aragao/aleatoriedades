@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { InitialPageModule } from './initial-page/initial-page.module';
-import { CursosService } from './services/cursos.service';
+import { routing } from './app.routing';
 
 @NgModule({
   declarations: [
@@ -14,6 +14,7 @@ import { CursosService } from './services/cursos.service';
     BrowserModule,
     FormsModule,
     InitialPageModule,
+    routing
   ],
   bootstrap: [AppComponent]
 })
