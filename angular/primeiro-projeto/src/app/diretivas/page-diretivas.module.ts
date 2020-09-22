@@ -10,13 +10,10 @@ import { NgifComponent } from './ngif/ngif.component';
 import { PageDiretivasComponent } from './page-diretivas.component';
 import { SharedModule } from '../shared/shared.module';
 import { CursosService } from '../services/cursos.service';
-import { AppModule } from '../app.module';
-
-
 
 const routes: Routes = [
   {
-    path: 'diretivas', component: PageDiretivasComponent,
+    path: '', component: PageDiretivasComponent,
     children: [
       { path: 'fundo-amarelo', component: FundoAmareloComponent },
       { path: 'ngstyle', component: NgStyleComponent },

@@ -14,7 +14,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'interpolacao', component: PageEstructureComponent,
+    path: '', component: PageEstructureComponent,
     children: [
       { path: 'two-way-data-binding', component: TwoWayDataBindingComponent },
       { path: 'interpolacao', component: InterpolationComponent },
