@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { InitialPageModule } from './initial-page/initial-page.module';
-import { routing } from './app.routing.module';
+import { routing } from './app.routing';
 import { DiretivasPageModule } from './diretivas/page-diretivas.module';
 
 @NgModule({
