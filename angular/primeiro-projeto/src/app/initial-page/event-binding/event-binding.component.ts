@@ -4,15 +4,15 @@ import { Component } from '@angular/core';
   selector: 'app-event-binding',
   templateUrl: './event-binding.component.html',
 })
-export class EventBindingComponent{
+export class EventBindingComponent {
   inputText: string;
   savedText: string;
-  
+
   botaoClicado(): void {
     this.savedText = this.inputText;
   }
 
-  enterDigitado():void {
+  enterDigitado(): void {
     this.savedText = this.inputText;
   }
 

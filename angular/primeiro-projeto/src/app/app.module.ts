@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { InitialPageModule } from './initial-page/initial-page.module';
 import { routing } from './app.routing';
 import { DiretivasPageModule } from './diretivas/page-diretivas.module';
+import { LoginModule } from './login/login.module';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -14,8 +16,10 @@ import { DiretivasPageModule } from './diretivas/page-diretivas.module';
     BrowserModule,
     InitialPageModule,
     DiretivasPageModule,
+    LoginModule,
     routing
   ],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

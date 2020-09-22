@@ -38,7 +38,6 @@ const routes: Routes = [
     NgforComponent,
     NgifComponent,
   ],
-  exports: [RouterModule],
   providers: [CursosService]
 })
 export class DiretivasPageModule { }

@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+import { SharedModule } from '../shared/shared.module';
+import { CursosService } from '../services/cursos.service';
 import { ClassStyleComponent } from './class-style/class-style.component';
 import { InterpolationComponent } from './interpolation/interpolation.component';
 import { TwoWayDataBindingComponent } from './two-way-data-binding/two-way-data-binding.component';
 import { EventBindingComponent } from './event-binding/event-binding.component';
-import { SharedModule } from '../shared/shared.module';
-import { CursosService } from '../services/cursos.service';
 import { PageEstructureComponent } from './page-estructure.component';
-import { RouterModule, Routes } from '@angular/router';
 
 
 const routes: Routes = [
@@ -38,7 +38,6 @@ const routes: Routes = [
     TwoWayDataBindingComponent,
     EventBindingComponent,
   ],
-  exports: [RouterModule],
   providers: [CursosService]
 })
 export class InitialPageModule { }

@@ -1,5 +1,6 @@
-<header>
+<header *ngIf="mostraMenu">
   <nav class="nav nav-pills">
+    <a routerLinkActive="active" routerLink="/login" class="nav-link">Login</a>
     <a routerLinkActive="active" routerLink="/interpolacaoBiding" class="nav-link">Interpolação e Bindings</a>
     <a routerLinkActive="active" routerLink="/diretivas" class="nav-link">Diretivas</a>
   </nav>
