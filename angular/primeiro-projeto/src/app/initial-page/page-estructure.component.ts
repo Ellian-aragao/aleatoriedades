@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
-import {  } from '../initial-page.module';
-import {  } from '../../shared/shared.module';
+import {  } from './initial-page.module';
+import {  } from '../shared/shared.module';
 
 @Component({
   selector: 'app-page-estructure',

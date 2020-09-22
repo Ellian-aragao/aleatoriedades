@@ -6,6 +6,7 @@ import { FundoAmareloDirective } from './fundo-amarelo.directive';
 import { HighligthMouseDirective } from './highligth-mouse.directive';
 import { NgElseDirective } from './ng-else.directive';
 import { CamelCasePipe } from './camel-case.pipe';
+import { AdicionaCursoComponent } from './adiciona-curso/adiciona-curso.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { CamelCasePipe } from './camel-case.pipe';
     FundoAmareloDirective,
     HighligthMouseDirective,
     NgElseDirective,
-    CamelCasePipe
+    CamelCasePipe,
+    AdicionaCursoComponent
   ],
   imports: [
     CommonModule
@@ -23,7 +25,8 @@ import { CamelCasePipe } from './camel-case.pipe';
     FundoAmareloDirective,
     HighligthMouseDirective,
     NgElseDirective,
-    CamelCasePipe
+    CamelCasePipe,
+    AdicionaCursoComponent
   ]
 })
 export class SharedModule { }

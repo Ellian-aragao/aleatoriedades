@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CursosService } from '../../../services/cursos.service';
+import { CursosService } from 'src/app/services/cursos.service';
 
 @Component({
   selector: 'app-ngfor',
@@ -9,7 +9,7 @@ export class NgforComponent implements OnInit {
 
   cursos: string[];
 
-  constructor(private cursosService: CursosService) {}
+  constructor(private cursosService: CursosService) { }
   ngOnInit(): void {
     this.cursos = this.cursosService.getCursos();
   }

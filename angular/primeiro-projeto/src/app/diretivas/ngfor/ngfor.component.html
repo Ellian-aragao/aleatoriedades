@@ -1,6 +1,8 @@
 <div class="mt-4">
   <h4>Diretiva ngFor</h4>
-  Lista de Cursos
+  <app-adiciona-curso></app-adiciona-curso>
+  <br>
+  <p>Lista de Cursos</p>
   <ul>
     <li *ngFor="let curso of cursos">
       {{ curso | camelCase}}

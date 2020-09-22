@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { InitialPageModule } from './initial-page/initial-page.module';
 import { routing } from './app.routing';
+import { DiretivasPageModule } from './diretivas/page-diretivas.module';
 
 @NgModule({
   declarations: [
@@ -12,8 +12,8 @@ import { routing } from './app.routing';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     InitialPageModule,
+    DiretivasPageModule,
     routing
   ],
   bootstrap: [AppComponent]
