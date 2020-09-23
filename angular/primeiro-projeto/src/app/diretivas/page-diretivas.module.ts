@@ -10,10 +10,12 @@ import { NgifComponent } from './ngif/ngif.component';
 import { PageDiretivasComponent } from './page-diretivas.component';
 import { SharedModule } from '../shared/shared.module';
 import { CursosService } from '../services/cursos.service';
+import { AuthGuardChildService } from '../services/guard/auth-guard-child.service';
 
 const routes: Routes = [
   {
     path: '', component: PageDiretivasComponent,
+    canActivateChild: [AuthGuardChildService],
     children: [
       { path: 'fundo-amarelo', component: FundoAmareloComponent },
       { path: 'ngstyle', component: NgStyleComponent },
@@ -38,6 +40,8 @@ const routes: Routes = [
     NgforComponent,
     NgifComponent,
   ],
-  providers: [CursosService]
+  providers: [
+    CursosService,
+    AuthGuardChildService]
 })
 export class DiretivasPageModule { }
