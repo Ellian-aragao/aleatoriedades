@@ -21,4 +21,8 @@ export class AuthService {
     }
     this.mostrarMenuEmitter.emit(this.usuarioStateAuth);
   }
+
+  isUserAuthenticated(): boolean {
+    return this.usuarioStateAuth;
+  }
 }
