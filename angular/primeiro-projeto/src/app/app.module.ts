@@ -9,7 +9,7 @@ import { LoginModule } from './login/login.module';
 import { AuthService } from './services/auth.service';
 import { AuthGuardService } from './services/guard/auth-guard.service';
 import { AuthGuardChildService } from './services/guard/auth-guard-child.service';
-import { FormsMethodsModule } from './forms/forms-methods.module';
+import { FormularioModule } from './formulario/formulario.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { FormsMethodsModule } from './forms/forms-methods.module';
     InterpolationBindingModule,
     DiretivasPageModule,
     LoginModule,
-    FormsMethodsModule,
+    FormularioModule,
     routing
   ],
   providers: [

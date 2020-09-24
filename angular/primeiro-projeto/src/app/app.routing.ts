@@ -17,7 +17,8 @@ const routes: Routes = [
   },
   {
     path: 'forms',
-    loadChildren: 'src/app/forms/forms-methods.module#FormsMethodsModule',
+    loadChildren: 'src/app/formulario/formulario.module#FormularioModule',
+    // loadChildren: 'src/app/forms/forms-methods.module#FormsMethodsModule',
     // canActivate: [AuthGuardService],
     // canLoad: [AuthGuardService]
   },
