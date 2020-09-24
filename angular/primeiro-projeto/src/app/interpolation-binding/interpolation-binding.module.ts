@@ -10,11 +10,14 @@ import { InterpolationComponent } from './interpolation/interpolation.component'
 import { TwoWayDataBindingComponent } from './two-way-data-binding/two-way-data-binding.component';
 import { EventBindingComponent } from './event-binding/event-binding.component';
 import { PageEstructureComponent } from './page-estructure.component';
+import { AuthGuardChildService } from '../services/guard/auth-guard-child.service';
 
 
 const routes: Routes = [
   {
     path: '', component: PageEstructureComponent,
+    canActivateChild: [AuthGuardChildService],
+    canLoad: [AuthGuardChildService],
     children: [
       { path: 'two-way-data-binding', component: TwoWayDataBindingComponent },
       { path: 'interpolacao', component: InterpolationComponent },
@@ -40,4 +43,4 @@ const routes: Routes = [
   ],
   providers: [CursosService]
 })
-export class InitialPageModule { }
+export class InterpolationBindingModule { }

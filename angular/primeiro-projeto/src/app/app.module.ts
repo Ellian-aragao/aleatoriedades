@@ -2,12 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { InitialPageModule } from './initial-page/initial-page.module';
 import { routing } from './app.routing';
+import { InterpolationBindingModule } from './interpolation-binding/interpolation-binding.module';
 import { DiretivasPageModule } from './diretivas/page-diretivas.module';
 import { LoginModule } from './login/login.module';
 import { AuthService } from './services/auth.service';
 import { AuthGuardService } from './services/guard/auth-guard.service';
+import { AuthGuardChildService } from './services/guard/auth-guard-child.service';
+import { FormsMethodsModule } from './forms/forms-methods.module';
 
 @NgModule({
   declarations: [
@@ -15,12 +17,17 @@ import { AuthGuardService } from './services/guard/auth-guard.service';
   ],
   imports: [
     BrowserModule,
-    InitialPageModule,
+    InterpolationBindingModule,
     DiretivasPageModule,
     LoginModule,
+    FormsMethodsModule,
     routing
   ],
-  providers: [AuthService, AuthGuardService],
+  providers: [
+    AuthService,
+    AuthGuardService,
+    AuthGuardChildService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -16,6 +16,7 @@ const routes: Routes = [
   {
     path: '', component: PageDiretivasComponent,
     canActivateChild: [AuthGuardChildService],
+    canLoad: [AuthGuardChildService],
     children: [
       { path: 'fundo-amarelo', component: FundoAmareloComponent },
       { path: 'ngstyle', component: NgStyleComponent },
@@ -40,8 +41,6 @@ const routes: Routes = [
     NgforComponent,
     NgifComponent,
   ],
-  providers: [
-    CursosService,
-    AuthGuardChildService]
+  providers: [CursosService]
 })
 export class DiretivasPageModule { }

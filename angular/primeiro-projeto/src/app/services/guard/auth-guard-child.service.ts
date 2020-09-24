@@ -1,18 +1,22 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivateChild, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { CanActivateChild, CanLoad, Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuardChildService implements CanActivateChild {
+export class AuthGuardChildService implements CanActivateChild, CanLoad {
 
-  canActivateChild(
-    childRoute: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): boolean {
-      console.log(childRoute);
-      console.log(state);
-      alert('está tentando acessar rotas sem autorização');
-      return false;
+  constructor(private auth: AuthService, private router: Router) { }
+
+  canActivateChild(): boolean {
+    return this.canLoad();
   }
-
+  canLoad(): boolean {
+    if (this.auth.isUserAuthenticated()) {
+      return true;
+    }
+    this.router.navigate(['login']);
+    return false;
+  }
 }

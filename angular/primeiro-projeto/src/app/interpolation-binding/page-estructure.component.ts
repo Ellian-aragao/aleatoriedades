@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import {  } from './initial-page.module';
+import {  } from './interpolation-binding.module';
 import {  } from '../shared/shared.module';
 
 @Component({
