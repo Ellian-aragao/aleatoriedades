@@ -7,6 +7,7 @@ import { PageFormComponent } from './page-form.component';
 import { DataFormComponent } from './data-form/data-form.component';
 import { TemplateFormComponent } from './template-form/template-form.component';
 import { ConsultaCepService } from '../services/consulta-cep.service.service';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -24,6 +25,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     FormsModule,
     CommonModule,
+    HttpClientModule,
     ReactiveFormsModule
   ],
   declarations: [

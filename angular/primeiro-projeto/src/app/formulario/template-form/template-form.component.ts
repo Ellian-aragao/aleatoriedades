@@ -47,9 +47,11 @@ export class TemplateFormComponent {
     form: {
       patchValue: (arg0: {
         endereco: {
-          rua: any;
-          // cep: dados.cep,
-          complemento: any; bairro: any; cidade: any; estado: any;
+          rua: string;
+          complemento: string;
+          bairro: string;
+          cidade: string;
+          estado: string;
         };
       }) => void;
     };
