@@ -23,7 +23,7 @@ const routes: Routes = [
     // canLoad: [AuthGuardService]
   },
   { path: 'login', loadChildren: 'src/app/login/login.module#LoginModule' },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: '**', redirectTo: '/login', pathMatch: 'full' }
+  { path: '', redirectTo: '/forms', pathMatch: 'full' },
+  { path: '**', redirectTo: '/forms', pathMatch: 'full' }
 ];
 export const routing: ModuleWithProviders<any> = RouterModule.forRoot(routes);

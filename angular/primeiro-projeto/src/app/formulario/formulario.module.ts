@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { PageFormComponent } from './page-form.component';
 import { DataFormComponent } from './data-form/data-form.component';
 import { TemplateFormComponent } from './template-form/template-form.component';
+import { ConsultaCepService } from '../services/consulta-cep.service.service';
 
 const routes: Routes = [
   {
     path: '', component: PageFormComponent,
     children: [
+      { path: '', component: DataFormComponent },
       { path: 'data-form', component: DataFormComponent },
       { path: 'template-form', component: TemplateFormComponent },
     ]
@@ -18,15 +20,17 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    PageFormComponent,
-    DataFormComponent,
-    TemplateFormComponent
-  ],
   imports: [
     RouterModule.forChild(routes),
     FormsModule,
     CommonModule,
-  ]
+    ReactiveFormsModule
+  ],
+  declarations: [
+    PageFormComponent,
+    DataFormComponent,
+    TemplateFormComponent,
+  ],
+  providers: [ConsultaCepService]
 })
 export class FormularioModule { }
