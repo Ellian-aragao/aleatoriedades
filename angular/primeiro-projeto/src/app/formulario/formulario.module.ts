@@ -8,15 +8,17 @@ import { DataFormComponent } from './data-form/data-form.component';
 import { TemplateFormComponent } from './template-form/template-form.component';
 import { ConsultaCepService } from '../services/consulta-cep.service.service';
 import { HttpClientModule } from '@angular/common/http';
+import { DropdownService } from '../services/dropdown.service';
 
 const routes: Routes = [
   {
-    path: '', component: PageFormComponent,
+    path: '',
+    component: PageFormComponent,
     children: [
       { path: '', component: DataFormComponent },
       { path: 'data-form', component: DataFormComponent },
       { path: 'template-form', component: TemplateFormComponent },
-    ]
+    ],
   },
 ];
 
@@ -26,13 +28,9 @@ const routes: Routes = [
     FormsModule,
     CommonModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  declarations: [
-    PageFormComponent,
-    DataFormComponent,
-    TemplateFormComponent,
-  ],
-  providers: [ConsultaCepService]
+  declarations: [PageFormComponent, DataFormComponent, TemplateFormComponent],
+  providers: [ConsultaCepService, DropdownService],
 })
-export class FormularioModule { }
+export class FormularioModule {}

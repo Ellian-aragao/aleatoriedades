@@ -1,18 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ConsultaCepService } from 'src/app/services/consulta-cep.service.service';
-
+import { DropdownService } from 'src/app/services/dropdown.service';
+import { Estados } from '../interfaces/estados';
+import { Usuario } from '../interfaces/usuario';
 @Component({
   selector: 'app-template-form',
   templateUrl: './template-form.component.html',
 })
-export class TemplateFormComponent {
-
-  usuario: any = {
+export class TemplateFormComponent implements OnInit {
+  usuario: Usuario = {
     nome: null,
-    email: null
+    email: null,
   };
 
-  constructor(private cepService: ConsultaCepService) { }
+  // estados: Estados[];
+  estados: Observable<Estados[]>;
+
+  constructor(
+    private cepService: ConsultaCepService,
+    private dropdownService: DropdownService
+  ) {}
+  ngOnInit(): void {
+    // this.dropdownService
+    //   .getEstadosBr()
+    //   .subscribe((dados: Estados[]) => (this.estados = dados));
+    this.estados = this.dropdownService.getEstadosBr() as Observable<Estados[]>;
+  }
 
   onSubmit(formulario: any): void {
     console.log(formulario);
@@ -24,38 +38,42 @@ export class TemplateFormComponent {
     //   });
   }
 
-  verificaValidTouched(campo: { valid: any; touched: any; }): boolean {
+  verificaValidTouched(campo: { valid: any; touched: any }): boolean {
     return !campo.valid && campo.touched;
   }
 
   aplicaCssErro(campo: any): any {
     return {
       'has-error': this.verificaValidTouched(campo),
-      'has-feedback': this.verificaValidTouched(campo)
+      'has-feedback': this.verificaValidTouched(campo),
     };
   }
 
   consultaCEP(cep: string, form: any): void {
     cep = cep.replace(/\D/g, '');
     if (cep != null && cep !== '') {
-      this.cepService.consultaCEP(cep)
-        .subscribe(dados => this.populaDadosForm(dados, form));
+      this.cepService
+        .consultaCEP(cep)
+        .subscribe((dados) => this.populaDadosForm(dados, form));
     }
   }
 
-  populaDadosForm(dados: any, formulario: {
-    form: {
-      patchValue: (arg0: {
-        endereco: {
-          rua: string;
-          complemento: string;
-          bairro: string;
-          cidade: string;
-          estado: string;
-        };
-      }) => void;
-    };
-  }): void {
+  populaDadosForm(
+    dados: any,
+    formulario: {
+      form: {
+        patchValue: (arg0: {
+          endereco: {
+            rua: string;
+            complemento: string;
+            bairro: string;
+            cidade: string;
+            estado: string;
+          };
+        }) => void;
+      };
+    }
+  ): void {
     /*formulario.setValue({
       nome: formulario.value.nome,
       email: formulario.value.email,
@@ -77,10 +95,9 @@ export class TemplateFormComponent {
         complemento: dados.complemento,
         bairro: dados.bairro,
         cidade: dados.localidade,
-        estado: dados.uf
-      }
+        estado: dados.uf,
+      },
     });
-
   }
 
   resetaDadosForm(formulario: {
@@ -102,8 +119,8 @@ export class TemplateFormComponent {
         complemento: null,
         bairro: null,
         cidade: null,
-        estado: null
-      }
+        estado: null,
+      },
     });
   }
 }
