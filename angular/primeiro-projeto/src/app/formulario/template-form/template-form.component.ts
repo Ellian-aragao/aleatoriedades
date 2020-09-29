@@ -50,7 +50,6 @@ export class TemplateFormComponent implements OnInit {
   }
 
   consultaCEP(cep: string, form: any): void {
-    cep = cep.replace(/\D/g, '');
     if (cep != null && cep !== '') {
       this.cepService
         .consultaCEP(cep)

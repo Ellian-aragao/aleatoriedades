@@ -14,7 +14,8 @@ import { AuthGuardChildService } from '../services/guard/auth-guard-child.servic
 
 const routes: Routes = [
   {
-    path: '', component: PageDiretivasComponent,
+    path: '',
+    component: PageDiretivasComponent,
     canActivateChild: [AuthGuardChildService],
     canLoad: [AuthGuardChildService],
     children: [
@@ -22,8 +23,8 @@ const routes: Routes = [
       { path: 'ngstyle', component: NgStyleComponent },
       { path: 'ngswitch', component: NgSwitchComponent },
       { path: 'ngfor', component: NgforComponent },
-      { path: 'ngif', component: NgifComponent }
-    ]
+      { path: 'ngif', component: NgifComponent },
+    ],
   },
 ];
 
@@ -41,6 +42,6 @@ const routes: Routes = [
     NgforComponent,
     NgifComponent,
   ],
-  providers: [CursosService]
+  providers: [CursosService],
 })
-export class DiretivasPageModule { }
+export class DiretivasPageModule {}

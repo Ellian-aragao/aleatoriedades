@@ -9,10 +9,13 @@ import { TemplateFormComponent } from './template-form/template-form.component';
 import { ConsultaCepService } from '../services/consulta-cep.service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { DropdownService } from '../services/dropdown.service';
+import { AuthGuardChildService } from '../services/guard/auth-guard-child.service';
 
 const routes: Routes = [
   {
     path: '',
+    canActivateChild: [AuthGuardChildService],
+    canLoad: [AuthGuardChildService],
     component: PageFormComponent,
     children: [
       { path: '', component: DataFormComponent },
