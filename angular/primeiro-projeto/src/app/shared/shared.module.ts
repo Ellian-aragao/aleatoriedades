@@ -7,6 +7,7 @@ import { HighligthMouseDirective } from './highligth-mouse.directive';
 import { NgElseDirective } from './ng-else.directive';
 import { CamelCasePipe } from './camel-case.pipe';
 import { AdicionaCursoComponent } from './adiciona-curso/adiciona-curso.component';
+import { PopupComponent } from './popup/popup.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { AdicionaCursoComponent } from './adiciona-curso/adiciona-curso.componen
     HighligthMouseDirective,
     NgElseDirective,
     CamelCasePipe,
-    AdicionaCursoComponent
+    AdicionaCursoComponent,
+    PopupComponent
   ],
   imports: [
     CommonModule
@@ -26,7 +28,8 @@ import { AdicionaCursoComponent } from './adiciona-curso/adiciona-curso.componen
     HighligthMouseDirective,
     NgElseDirective,
     CamelCasePipe,
-    AdicionaCursoComponent
+    AdicionaCursoComponent,
+    PopupComponent
   ]
 })
 export class SharedModule { }

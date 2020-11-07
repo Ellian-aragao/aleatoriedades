@@ -5,25 +5,46 @@ import { AuthGuardService } from './services/guard/auth-guard.service';
 const routes: Routes = [
   {
     path: 'interpolacaoBinding',
-    loadChildren: 'src/app/interpolation-binding/interpolation-binding.module#InterpolationBindingModule',
+    loadChildren: () =>
+      import('src/app/interpolation-binding/interpolation-binding.module').then(
+        (m) => m.InterpolationBindingModule
+      ),
     canActivate: [AuthGuardService],
-    canLoad: [AuthGuardService]
+    canLoad: [AuthGuardService],
   },
   {
     path: 'diretivas',
-    loadChildren: 'src/app/diretivas/page-diretivas.module#DiretivasPageModule',
+    loadChildren: () =>
+      import('./diretivas/page-diretivas.module').then(
+        (m) => m.DiretivasPageModule
+      ),
     canActivate: [AuthGuardService],
-    canLoad: [AuthGuardService]
+    canLoad: [AuthGuardService],
   },
   {
     path: 'forms',
-    loadChildren: 'src/app/formulario/formulario.module#FormularioModule',
-    // loadChildren: 'src/app/forms/forms-methods.module#FormsMethodsModule',
-    // canActivate: [AuthGuardService],
-    // canLoad: [AuthGuardService]
+    loadChildren: () =>
+      import('./formulario/formulario.module').then((m) => m.FormularioModule),
+    canActivate: [AuthGuardService],
+    canLoad: [AuthGuardService],
   },
-  { path: 'login', loadChildren: 'src/app/login/login.module#LoginModule' },
-  { path: '', redirectTo: '/forms', pathMatch: 'full' },
-  { path: '**', redirectTo: '/forms', pathMatch: 'full' }
+  {
+    path: 'cursos',
+    loadChildren: () =>
+      import('./http-module/http-module.module').then((m) => m.HttpModuleModule),
+    // canActivate: [AuthGuardService],
+    // canLoad: [AuthGuardService],
+  },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./login/login.module').then((m) => m.LoginModule),
+  },
+  {
+    path: '',
+    redirectTo: '/login',
+    pathMatch: 'full',
+  },
+  { path: '**', redirectTo: '/login', pathMatch: 'full' },
 ];
 export const routing: ModuleWithProviders<any> = RouterModule.forRoot(routes);
