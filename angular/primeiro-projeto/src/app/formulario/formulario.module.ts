@@ -14,8 +14,8 @@ import { AuthGuardChildService } from '../services/guard/auth-guard-child.servic
 const routes: Routes = [
   {
     path: '',
-    canActivateChild: [AuthGuardChildService],
-    canLoad: [AuthGuardChildService],
+    // canActivateChild: [AuthGuardChildService],
+    // canLoad: [AuthGuardChildService],
     component: PageFormComponent,
     children: [
       { path: '', component: DataFormComponent },

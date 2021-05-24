@@ -6,9 +6,9 @@ const routes: Routes = [
   {
     path: 'interpolacaoBinding',
     loadChildren: () =>
-      import('src/app/interpolation-binding/interpolation-binding.module').then(
-        (m) => m.InterpolationBindingModule
-      ),
+      import(
+        'src/app/interpolation-binding/interpolation-binding.module'
+      ).then((m) => m.InterpolationBindingModule),
     canActivate: [AuthGuardService],
     canLoad: [AuthGuardService],
   },
@@ -24,14 +24,18 @@ const routes: Routes = [
   {
     path: 'forms',
     loadChildren: () =>
-      import('./formulario/formulario.module').then((m) => m.FormularioModule),
+      import('./formulario/formulario.module').then(
+        (m) => m.FormularioModule
+      ),
     canActivate: [AuthGuardService],
     canLoad: [AuthGuardService],
   },
   {
     path: 'cursos',
     loadChildren: () =>
-      import('./http-module/http-module.module').then((m) => m.HttpModuleModule),
+      import('./http-module/http-module.module').then(
+        (m) => m.HttpModuleModule
+      ),
     // canActivate: [AuthGuardService],
     // canLoad: [AuthGuardService],
   },
@@ -47,4 +51,6 @@ const routes: Routes = [
   },
   { path: '**', redirectTo: '/login', pathMatch: 'full' },
 ];
-export const routing: ModuleWithProviders<any> = RouterModule.forRoot(routes);
+export const routing: ModuleWithProviders<any> = RouterModule.forRoot(
+  routes
+);
