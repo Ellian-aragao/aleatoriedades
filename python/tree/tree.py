@@ -24,6 +24,22 @@ class BinaryTree:
         else:
             self.root = None
 
+    def breadth_first_search(self, node=None, function=print):
+        if node is None:
+            node = self.root
+        asyncio.run(self._breadth_first_search(node, function))
+
+    async def _breadth_first_search(self, node=None, function=print):
+        if node is None:
+            return
+
+        self._executor_node(node.data, function)
+        await asyncio.gather(
+            self._breadth_first_search(node.left, function),
+            asyncio.sleep(float_info.min),
+            self._breadth_first_search(node.right, function)
+        )
+
     def simetric_traversal(self, node=None):
         if node is None:
             node = self.root
