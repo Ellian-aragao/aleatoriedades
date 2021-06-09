@@ -60,7 +60,15 @@ class BinaryTree:
             self.postorder_traversal(node.left)
         if node.right:
             self.postorder_traversal(node.right)
-        print(node, end=' ')
+
+    def _executor_node(self, node=None, function=print):
+        if node == None:
+            return
+
+        if function == print:
+            function(node, end=' ')
+        else:
+            function(node)
 
     def height(self, node=None):
         if node is None:
