@@ -75,19 +75,19 @@ class BinaryTree:
             return hright + 1
         return hleft + 1
 
-    def levelorder_traversal(self, node=ROOT):
+    def levelorder_traversal(self, node=ROOT, function=print):
         if node == ROOT:
             node = self.root
 
         queue = Queue()
-        queue.push(node)
-        while len(queue):
-            node = queue.pop()
+        queue.put(node)
+        while queue.qsize():
+            node = queue.get()
             if node.left:
-                queue.push(node.left)
+                queue.put(node.left)
             if node.right:
-                queue.push(node.right)
-            print(node, end=" ")
+                queue.put(node.right)
+            self._executor_node(node.data, function)
 
 
 class BinarySearchTree(BinaryTree):
