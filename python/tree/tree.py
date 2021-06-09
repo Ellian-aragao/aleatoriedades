@@ -1,7 +1,4 @@
-
-import random
 import asyncio
-from sys import float_info
 from queue import Queue
 ROOT = "root"
 
@@ -38,7 +35,6 @@ class BinaryTree:
         self._executor_node(node.data, function)
         await asyncio.gather(
             self._breadth_first_search(node.left, function),
-            asyncio.sleep(float_info.min),
             self._breadth_first_search(node.right, function)
         )
 
