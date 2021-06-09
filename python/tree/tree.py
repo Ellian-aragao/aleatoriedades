@@ -51,31 +51,32 @@ class BinaryTree:
             self.simetric_traversal(node.right)
             print(')', end='')
 
-    def preorder_traversal(self, node=None):
+    def preorder_traversal(self, node=None, function=print):
         if node is None:
             node = self.root
-        print(node, end=' ')
+        self._executor_node(node.data, function)
         if node.left:
             self.preorder_traversal(node.left)
         if node.right:
             self.preorder_traversal(node.right)
 
-    def inorder_traversal(self, node=None):
+    def inorder_traversal(self, node=None, function=print):
         if node is None:
             node = self.root
         if node.left:
             self.inorder_traversal(node.left)
-        print(node, end=' ')
+        self._executor_node(node.data, function)
         if node.right:
             self.inorder_traversal(node.right)
 
-    def postorder_traversal(self, node=None):
+    def postorder_traversal(self, node=None, function=print):
         if node is None:
             node = self.root
         if node.left:
             self.postorder_traversal(node.left)
         if node.right:
             self.postorder_traversal(node.right)
+        self._executor_node(node.data, function)
 
     def _executor_node(self, node=None, function=print):
         if node == None:
