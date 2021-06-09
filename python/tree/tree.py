@@ -161,42 +161,43 @@ class BinarySearchTree(BinaryTree):
         return node.data
 
     def remove(self, value, node=ROOT):
-        # Se for o valor padrão, executa a partir da raiz
         if node == ROOT:
             node = self.root
-        # Se desceu até um ramo nulo, não há nada a fazer
         if node is None:
             return node
-        # Se o valor for menor, desce à esquerda
         if value < node.data:
             node.left = self.remove(value, node.left)
-        # Se o valor for maior, desce à direita
         elif value > node.data:
             node.right = self.remove(value, node.right)
-        # Se não for nem menor, nem maior, encontramos! Vamos remover...
         else:
-            if node.left is None:
-                return node.right
-            elif node.right is None:
-                return node.left
-            else:
-                # Substituto é o sucessor do valor a ser removido
-                substitute = self.min(node.right)
-                # Ao invés de trocar a posição dos nós, troca o valor
-                node.data = substitute
-                # Depois, remove o substituto da subárvore à direita
-                node.right = self.remove(substitute, node.right)
+            self._remove(value, node)
 
         return node
 
-    # def search(self, value, node=ROOT):
-    #     if node == ROOT:
-    #         node = self.root
-    #     if node is None or node.data == value:
-    #         return BinarySearchTree(node)
-    #     if value < node.data:
-    #         return self.search(value, node.left)
-    #     return self.search(value, node.right)
+    def _remove(self, value, node=None):
+        if node is None:
+            return
+
+        if node.left is None:
+            return node.right
+        elif node.right is None:
+            return node.left
+        else:
+            self._remove_swap(node.data, node.right)
+
+    def _remove_swap(self, data, node_right):
+        substitute = self.min(node_right)
+        data = substitute
+        node_right = self.remove(substitute, node_right)
+
+
+array = []
+
+
+def salve_value(node=None):
+    if node is None:
+        return
+    array.append(node)
 
 
 if __name__ == "__main__":
