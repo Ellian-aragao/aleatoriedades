@@ -1,20 +1,25 @@
+use std::process::exit;
+
 use tamagotchi::Tamagotchi;
 
 mod tamagotchi;
 
 fn main() {
-    let mut tamagotchi = Tamagotchi::new("Tamagotchi".to_string());
-    println!("show\n{}\n", tamagotchi);
-    let input_numbers = read_input_numbers();
-    println!("valor: {}", input_numbers);
-    input_to_tamagotchi_action(&mut tamagotchi, input_numbers);
-    println!("show\n{}\n", tamagotchi);
-    tamagotchi.randon_condition();
-    if tamagotchi.dead() {
-        println!("{} is dead :(", tamagotchi.get_name());
-        return;
+    println!("Give a name to your Tamagotchi:");
+    let mut tamagotchi = Tamagotchi::new(ui_actions::read_tamagotchi_name());
+    while tamagotchi.is_alive() {
+        println!("{}", tamagotchi);
+        let action = ui_actions::read_action_to_tamagotchi_action();
+        action(&mut tamagotchi);
+        println!("{}", tamagotchi);
+        tamagotchi.random_condition();
+        println!("{}", tamagotchi);
+        tamagotchi.is_dead_get_reason().map(|dead_reason| {
+            println!("{} is dead :( why was {}", tamagotchi.get_name(), dead_reason);
+            exit(0);
+        });
+        tamagotchi.next_age();
     }
-    println!("show\n{}\n", tamagotchi);
 }
 
 mod ui_actions {
