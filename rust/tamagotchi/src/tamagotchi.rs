@@ -2,10 +2,10 @@ use rand::Rng;
 
 pub struct Tamagotchi {
     name: String,
-    hunger: u8,
-    boredom: u8,
-    health: u8,
-    age: u8,
+    hunger: i8,
+    boredom: i8,
+    health: i8,
+    age: i8,
 }
 
 impl std::fmt::Display for Tamagotchi {
@@ -57,7 +57,7 @@ impl Tamagotchi {
         self.boredom += 3;
     }
 
-    pub fn next_age(&mut self) -> &u8 {
+    pub fn next_age(&mut self) -> &i8 {
         self.age += 1;
         return &self.age;
     }
