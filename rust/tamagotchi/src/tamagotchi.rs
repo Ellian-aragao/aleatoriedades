@@ -1,5 +1,7 @@
 use rand::Rng;
 
+const UNDER_BOUNDED: i8 = 0;
+const UPPER_BOUNDED: i8 = 15;
 pub struct Tamagotchi {
     name: String,
     hunger: i8,
@@ -68,7 +70,7 @@ impl Tamagotchi {
 
     pub fn is_dead(&self) -> bool {
         return if vec![self.hunger, self.boredom, self.health]
-            .iter().any(|&x| x <= 0 || x >= 15) {
+            .iter().any(|&x| x <= UNDER_BOUNDED || x >= UPPER_BOUNDED) {
             true
         } else {
             false
