@@ -90,6 +90,13 @@ impl Tamagotchi {
         self.boredom += 5;
     }
 
+    pub fn get_dead_type(&self) -> Option<DeadReason> {
+        verify_bounds(&self.hunger, FeedALot, Hunger)
+            .or(verify_bounds(&self.boredom, Happiness, Boredom))
+            .or(verify_bounds(&self.health, LowImmunity, Autoimmune))
+            .or(if self.age >= 20 { Some(OldAge) } else { None })
+    }
+
     pub fn is_dead(&self) -> bool {
         return if vec![self.hunger, self.boredom, self.health]
             .iter().any(|&x| x <= UNDER_BOUNDED || x >= UPPER_BOUNDED) {
