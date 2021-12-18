@@ -62,7 +62,11 @@ impl Tamagotchi {
         return &self.age;
     }
 
-    pub fn dead(&self) -> bool {
+    pub fn unknown_action(&mut self) {
+        self.boredom += 5;
+    }
+
+    pub fn is_dead(&self) -> bool {
         return if vec![self.hunger, self.boredom, self.health]
             .iter().any(|&x| x <= 0 || x >= 15) {
             true
