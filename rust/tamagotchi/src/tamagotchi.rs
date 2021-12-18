@@ -114,3 +114,38 @@ pub fn verify_bounds(life_context: &i8, under_condition: DeadReason, upper_condi
         _ => None
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    mod verify_bounds {
+        use super::*;
+
+        #[test]
+        fn should_return_under_condition_when_life_context_be_less_then_under_bounded() {
+            let less_then_under_bounded: i8 = -1;
+            assert_eq!(0, UNDER_BOUNDED);
+            assert_eq!(true, less_then_under_bounded < UNDER_BOUNDED);
+            let response = verify_bounds(&less_then_under_bounded, Boredom, Happiness);
+            assert_eq!(true, response.is_some());
+            assert_eq!(Boredom.to_string(), response.unwrap().to_string());
+        }
+
+        #[test]
+        fn should_return_upper_condition_when_life_context_be_more_then_upper_bounded() {
+            let more_then_upper_bounded: i8 = 16;
+            assert_eq!(15, UPPER_BOUNDED);
+            assert_eq!(true, more_then_upper_bounded > UPPER_BOUNDED);
+            let response = verify_bounds(&more_then_upper_bounded, Boredom, Happiness);
+            assert_eq!(true, response.is_some());
+            assert_eq!(Happiness.to_string(), response.unwrap().to_string());
+        }
+
+        #[test]
+        fn should_return_none_when_any_condition_is_answered() {
+            let response = verify_bounds(&(10 as i8), Boredom, Happiness);
+            assert_eq!(true, response.is_none());
+        }
+    }
+}
