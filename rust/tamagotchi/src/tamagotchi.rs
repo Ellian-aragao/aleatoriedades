@@ -99,3 +99,11 @@ impl Tamagotchi {
         };
     }
 }
+
+pub fn verify_bounds(life_context: &i8, under_condition: DeadReason, upper_condition: DeadReason) -> Option<DeadReason> {
+    match life_context {
+        c if c <= &UNDER_BOUNDED => Some(under_condition),
+        c if c >= &UPPER_BOUNDED => Some(upper_condition),
+        _ => None
+    }
+}
