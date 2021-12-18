@@ -29,7 +29,7 @@ impl Tamagotchi {
         }
     }
 
-    pub fn randon_condition(&mut self) {
+    pub fn random_condition(&mut self) {
         match rand::thread_rng().gen_range(1..4) {
             1 => self.boredom += 1,
             2 => self.hunger += 1,
