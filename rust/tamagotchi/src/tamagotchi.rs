@@ -1,13 +1,35 @@
+use std::fmt::Formatter;
+
 use rand::Rng;
+
+use crate::tamagotchi::DeadReason::{Autoimmune, Boredom, FeedALot, Happiness, Hunger, LowImmunity, OldAge};
 
 const UNDER_BOUNDED: i8 = 0;
 const UPPER_BOUNDED: i8 = 15;
+
 pub struct Tamagotchi {
     name: String,
     hunger: i8,
     boredom: i8,
     health: i8,
     age: i8,
+}
+
+#[derive(Debug)]
+pub enum DeadReason {
+    Hunger,
+    Boredom,
+    Happiness,
+    OldAge,
+    FeedALot,
+    LowImmunity,
+    Autoimmune,
+}
+
+impl std::fmt::Display for DeadReason {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{:?}", self)
+    }
 }
 
 impl std::fmt::Display for Tamagotchi {
