@@ -6,6 +6,7 @@ use crate::tamagotchi::DeadReason::{Autoimmune, Boredom, FeedALot, Happiness, Hu
 
 const UNDER_BOUNDED: i8 = 0;
 const UPPER_BOUNDED: i8 = 15;
+const AGE_LIMIT: i8 = 20;
 
 pub struct Tamagotchi {
     name: String,
@@ -94,16 +95,27 @@ impl Tamagotchi {
         verify_bounds(&self.hunger, FeedALot, Hunger)
             .or(verify_bounds(&self.boredom, Happiness, Boredom))
             .or(verify_bounds(&self.health, LowImmunity, Autoimmune))
-            .or(if self.age >= 20 { Some(OldAge) } else { None })
+            .or(if self.age >= AGE_LIMIT { Some(OldAge) } else { None })
     }
 
-    pub fn is_dead(&self) -> bool {
+    pub fn is_alive(&self) -> bool {
+        !self.is_dead()
+    }
+
+    fn is_dead(&self) -> bool {
         return if vec![self.hunger, self.boredom, self.health]
-            .iter().any(|&x| x <= UNDER_BOUNDED || x >= UPPER_BOUNDED) {
+            .iter().any(|&x| x <= UNDER_BOUNDED || x >= UPPER_BOUNDED) || self.age >= AGE_LIMIT {
             true
         } else {
             false
         };
+    }
+
+    pub fn is_dead_get_reason(&self) -> Option<DeadReason> {
+        if !self.is_dead() {
+            return None;
+        }
+        return self.get_dead_type();
     }
 }
 
