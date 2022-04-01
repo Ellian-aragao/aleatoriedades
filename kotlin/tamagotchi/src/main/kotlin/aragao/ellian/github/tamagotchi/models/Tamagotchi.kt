@@ -63,20 +63,14 @@ class Tamagotchi(val name: String) {
         return happiness
     }
 
-    fun randomicAction() {
-        val randomDecrementer = (-5..5).random()
-        if (randomDecrementer == 0) randomicAction()
+    fun randomicAction(): Int {
+        val randomValueIncrementer = (-5..5).random()
         when ((0..3).random()) {
-            0 -> {
-                health += randomDecrementer
-            }
-            1 -> {
-                happiness += randomDecrementer
-            }
-            2 -> {
-                hunger += randomDecrementer
-            }
+            0 -> health += randomValueIncrementer
+            1 -> happiness += randomValueIncrementer
+            2 -> hunger += randomValueIncrementer
         }
+        return randomValueIncrementer
     }
 
     private fun isInLimits(value: Int): Boolean = value in Tamagotchi.DOWN_LIMIT..Tamagotchi.UP_LIMIT
