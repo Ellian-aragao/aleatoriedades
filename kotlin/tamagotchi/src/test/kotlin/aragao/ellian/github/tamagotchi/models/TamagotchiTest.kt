@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import kotlin.test.assertFalse
+import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
 
 private const val tamagotchiName = "tamagotchi"
@@ -20,7 +21,7 @@ private const val tamagotchiName = "tamagotchi"
 internal class TamagotchiTest {
 
     @Nested
-    inner class SmokeTamagotchiTest {
+    inner class GenericTamagotchiTest {
 
         @Test
         fun `should be able to create a tamagotchi`() {
@@ -49,6 +50,15 @@ internal class TamagotchiTest {
             val tamagotchi = Tamagotchi(tamagotchiName)
             assertEquals("Tamagotchi(name='$tamagotchiName', age=${Default.AGE}, hunger=${Default.HUNGER}, happiness=${Default.HAPPINESS}, health=${Default.HEALTH})",
                 tamagotchi.toString())
+        }
+
+        @Test
+        fun `should verify random action from tamagotchi`() {
+            val tamagotchi = Tamagotchi(tamagotchiName)
+            val attributesBefore = listOf(tamagotchi.health, tamagotchi.happiness, tamagotchi.hunger)
+            tamagotchi.randomicAction()
+            val attributesAfter = listOf(tamagotchi.health, tamagotchi.happiness, tamagotchi.hunger)
+            assertNotEquals(attributesBefore, attributesAfter)
         }
     }
 

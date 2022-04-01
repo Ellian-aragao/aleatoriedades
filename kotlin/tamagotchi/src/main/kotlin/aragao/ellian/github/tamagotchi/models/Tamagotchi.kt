@@ -13,6 +13,7 @@ class Tamagotchi(val name: String) {
             }
             field = value
         }
+
     var hunger = Tamagotchi.Default.HUNGER
         private set(value) {
             if (isOutOfLimits(hunger)) {
@@ -20,6 +21,7 @@ class Tamagotchi(val name: String) {
             }
             field = value
         }
+
     var happiness = Tamagotchi.Default.HAPPINESS
         private set(value) {
             if (isOutOfLimits(happiness)) {
@@ -27,6 +29,7 @@ class Tamagotchi(val name: String) {
             }
             field = value
         }
+
     var health = Tamagotchi.Default.HEALTH
         private set(value) {
             if (isOutOfLimits(health)) {
@@ -35,9 +38,7 @@ class Tamagotchi(val name: String) {
             field = value
         }
 
-    fun plusAge(): Int {
-        return ++age
-    }
+    fun plusAge(): Int = ++age
 
     fun isAlive(): Boolean = age < Tamagotchi.MAX_AGE && listOf(hunger, happiness, health)
         .map(this::isInLimits)
@@ -60,6 +61,22 @@ class Tamagotchi(val name: String) {
         hunger += Tamagotchi.Play.HUNGER
         health += Tamagotchi.Play.HEALTH
         return happiness
+    }
+
+    fun randomicAction() {
+        val randomDecrementer = (-5..5).random()
+        if (randomDecrementer == 0) randomicAction()
+        when ((0..3).random()) {
+            0 -> {
+                health += randomDecrementer
+            }
+            1 -> {
+                happiness += randomDecrementer
+            }
+            2 -> {
+                hunger += randomDecrementer
+            }
+        }
     }
 
     private fun isInLimits(value: Int): Boolean = value in Tamagotchi.DOWN_LIMIT..Tamagotchi.UP_LIMIT
