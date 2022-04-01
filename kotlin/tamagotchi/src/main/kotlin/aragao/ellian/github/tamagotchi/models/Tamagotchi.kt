@@ -2,39 +2,71 @@ package aragao.ellian.github.tamagotchi.models
 
 import aragao.ellian.github.tamagotchi.constants.BoundedLimits.Tamagotchi
 import aragao.ellian.github.tamagotchi.exceptions.AgeOutOfBoundTamagotchiException
+import aragao.ellian.github.tamagotchi.exceptions.HealthOutOfBoundTamagotchiException
+import aragao.ellian.github.tamagotchi.exceptions.HungerOutOfBoundTamagotchiException
 
 class Tamagotchi(val name: String) {
-    var age = 0
-        private set
-    var hunger = 10
-        private set
-    var happiness = 10
-        private set
-    var health = 10
-        private set
+    var age = Tamagotchi.Default.AGE
+        private set(value) {
+            if (age >= Tamagotchi.MAX_AGE) {
+                throw AgeOutOfBoundTamagotchiException(age)
+            }
+            field = value
+        }
+    var hunger = Tamagotchi.Default.HUNGER
+        private set(value) {
+            if (isOutOfLimits(hunger)) {
+                throw HungerOutOfBoundTamagotchiException(hunger)
+            }
+            field = value
+        }
+    var happiness = Tamagotchi.Default.HAPPINESS
+        private set(value) {
+            if (isOutOfLimits(happiness)) {
+                throw HealthOutOfBoundTamagotchiException(happiness)
+            }
+            field = value
+        }
+    var health = Tamagotchi.Default.HEALTH
+        private set(value) {
+            if (isOutOfLimits(health)) {
+                throw HealthOutOfBoundTamagotchiException(health)
+            }
+            field = value
+        }
 
     fun plusAge(): Int {
-        if (age >= Tamagotchi.MAX_AGE) {
-            throw AgeOutOfBoundTamagotchiException();
-        }
-        return ++age;
+        return ++age
     }
 
-    fun isAlive(): Boolean {
-        return age < Tamagotchi.MAX_AGE && listOf(hunger, happiness, health)
-            .map(this::doNotPassLimits)
-            .reduce(Boolean::and)
+    fun isAlive(): Boolean = age < Tamagotchi.MAX_AGE && listOf(hunger, happiness, health)
+        .map(this::isInLimits)
+        .reduce(Boolean::and)
+
+    fun eat(): Int {
+        hunger += Tamagotchi.Eat.HUNGER
+        health += Tamagotchi.Eat.HEALTH
+        return hunger
     }
 
-    private fun doNotPassLimits(value: Int): Boolean {
-        return !(value <= Tamagotchi.DOWN_LIMIT || value >= Tamagotchi.UP_LIMIT)
+    fun takeShower(): Int {
+        health += Tamagotchi.Shower.HEALTH
+        happiness += Tamagotchi.Shower.HAPPINESS
+        return health
     }
+
+    fun play(): Int {
+        happiness += Tamagotchi.Play.HAPPINESS
+        hunger += Tamagotchi.Play.HUNGER
+        health += Tamagotchi.Play.HEALTH
+        return happiness
+    }
+
+    private fun isInLimits(value: Int): Boolean = value in Tamagotchi.DOWN_LIMIT..Tamagotchi.UP_LIMIT
+
+    private fun isOutOfLimits(value: Int): Boolean = value !in Tamagotchi.DOWN_LIMIT..Tamagotchi.UP_LIMIT
 
     override fun toString(): String {
         return "Tamagotchi(name='$name', age=$age, hunger=$hunger, happiness=$happiness, health=$health)"
-    }
-
-    fun eat() {
-        TODO("Not yet implemented")
     }
 }
