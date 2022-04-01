@@ -56,9 +56,10 @@ internal class TamagotchiTest {
         fun `should verify random action from tamagotchi`() {
             val tamagotchi = Tamagotchi(tamagotchiName)
             val attributesBefore = listOf(tamagotchi.health, tamagotchi.happiness, tamagotchi.hunger)
-            tamagotchi.randomicAction()
+            val valueRandomic = tamagotchi.randomicAction()
             val attributesAfter = listOf(tamagotchi.health, tamagotchi.happiness, tamagotchi.hunger)
-            assertNotEquals(attributesBefore, attributesAfter)
+            if (valueRandomic != 0)
+                assertNotEquals(attributesBefore, attributesAfter)
         }
     }
 
