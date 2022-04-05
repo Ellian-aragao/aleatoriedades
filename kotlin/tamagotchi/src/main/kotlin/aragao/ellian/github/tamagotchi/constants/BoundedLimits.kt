@@ -28,5 +28,9 @@ object BoundedLimits {
             const val HEALTH = -2
             const val HUNGER = -2
         }
+
+        enum class Actions {
+            EAT, SHOWER, PLAY
+        }
     }
 }

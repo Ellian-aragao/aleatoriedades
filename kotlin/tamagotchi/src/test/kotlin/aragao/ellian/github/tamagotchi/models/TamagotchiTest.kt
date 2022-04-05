@@ -1,6 +1,7 @@
 package aragao.ellian.github.tamagotchi.models
 
 import aragao.ellian.github.tamagotchi.constants.BoundedLimits
+import aragao.ellian.github.tamagotchi.constants.BoundedLimits.Tamagotchi.Actions
 import aragao.ellian.github.tamagotchi.constants.BoundedLimits.Tamagotchi.Default
 import aragao.ellian.github.tamagotchi.constants.BoundedLimits.Tamagotchi.Play
 import aragao.ellian.github.tamagotchi.constants.BoundedLimits.Tamagotchi.Shower
@@ -12,6 +13,7 @@ import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import kotlin.random.Random
 import kotlin.test.assertFalse
 import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
@@ -54,12 +56,15 @@ internal class TamagotchiTest {
 
         @Test
         fun `should verify random action from tamagotchi`() {
-            val tamagotchi = Tamagotchi(tamagotchiName)
-            val attributesBefore = listOf(tamagotchi.health, tamagotchi.happiness, tamagotchi.hunger)
-            val valueRandomic = tamagotchi.randomicAction()
-            val attributesAfter = listOf(tamagotchi.health, tamagotchi.happiness, tamagotchi.hunger)
-            if (valueRandomic != 0)
-                assertNotEquals(attributesBefore, attributesAfter)
+            Actions.values().forEach { action ->
+                val tamagotchi = Tamagotchi(tamagotchiName)
+                val attributesBefore = listOf(tamagotchi.health, tamagotchi.happiness, tamagotchi.hunger)
+                val valueRandomic = tamagotchi.randomicActionEffect(action)
+                if (valueRandomic != 0) {
+                    val attributesAfter = listOf(tamagotchi.health, tamagotchi.happiness, tamagotchi.hunger)
+                    assertNotEquals(attributesBefore, attributesAfter)
+                }
+            }
         }
     }
 

@@ -1,5 +1,6 @@
 package aragao.ellian.github.tamagotchi.models
 
+import aragao.ellian.github.tamagotchi.constants.BoundedLimits
 import aragao.ellian.github.tamagotchi.constants.BoundedLimits.Tamagotchi
 import aragao.ellian.github.tamagotchi.exceptions.AgeOutOfBoundTamagotchiException
 import aragao.ellian.github.tamagotchi.exceptions.HealthOutOfBoundTamagotchiException
@@ -63,9 +64,9 @@ class Tamagotchi(val name: String) {
         return happiness
     }
 
-    fun randomicAction(): Int {
+    fun randomicActionEffect(action: Tamagotchi.Actions): Int {
         val randomValueIncrementer = (-5..5).random()
-        when ((0..3).random()) {
+        when (action.ordinal % 3) {
             0 -> health += randomValueIncrementer
             1 -> happiness += randomValueIncrementer
             2 -> hunger += randomValueIncrementer
