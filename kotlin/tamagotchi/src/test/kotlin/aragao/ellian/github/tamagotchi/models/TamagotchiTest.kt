@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import kotlin.random.Random
 import kotlin.test.assertFalse
 import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
@@ -24,7 +23,6 @@ internal class TamagotchiTest {
 
     @Nested
     inner class GenericTamagotchiTest {
-
         @Test
         fun `should be able to create a tamagotchi`() {
             val tamagotchi = Tamagotchi(tamagotchiName)
@@ -66,6 +64,17 @@ internal class TamagotchiTest {
                 }
             }
         }
+
+        @Test
+        fun `should verify tamagotchi is dead when health is zero`() {
+            Actions.values().forEach { action ->
+                val tamagotchi = Tamagotchi(tamagotchiName)
+                val attributesBefore = listOf(tamagotchi.health, tamagotchi.happiness, tamagotchi.hunger)
+                tamagotchi.doAction(action)
+                val attributesAfter = listOf(tamagotchi.health, tamagotchi.happiness, tamagotchi.hunger)
+                assertNotEquals(attributesBefore, attributesAfter)
+            }
+        }
     }
 
     @Nested
@@ -73,7 +82,7 @@ internal class TamagotchiTest {
         @Test
         fun `should verify tamagotchi is not alive when called plus age max times`() {
             val tamagotchi = Tamagotchi(tamagotchiName)
-            repeat(BoundedLimits.Tamagotchi.MAX_AGE) { tamagotchi.plusAge() }
+            repeat(BoundedLimits.Tamagotchi.MAX_AGE) { tamagotchi.nextAge() }
             assertFalse(tamagotchi.isAlive())
         }
 
@@ -81,7 +90,7 @@ internal class TamagotchiTest {
         fun `should throw AgeOutOfBoundTamagotchiException when called plus age more then constant`() {
             val tamagotchi = Tamagotchi(tamagotchiName)
             assertThrows<AgeOutOfBoundTamagotchiException> {
-                repeat(BoundedLimits.Tamagotchi.MAX_AGE + 1) { tamagotchi.plusAge() }
+                repeat(BoundedLimits.Tamagotchi.MAX_AGE + 1) { tamagotchi.nextAge() }
             }
         }
     }
