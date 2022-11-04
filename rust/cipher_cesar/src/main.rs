@@ -119,4 +119,33 @@ fn main() {
     println!(" left phrase: {}", cipher.get_left());
 }
 
+#[cfg(test)]
+mod test {
+
+    mod cesar_cipher_test {
+        use super::super::*;
+        #[test]
+        fn should_create_cesar_cipher_with_key_equal_3() {
+            let cipher = cesar_cipher::CesarCipher::new(3, "Hello World");
+            assert_eq!(cipher.get_key(), 3);
+        }
+
+        #[test]
+        fn should_create_cesar_cipher_with_initial_text_hello_world() {
+            let cipher = cesar_cipher::CesarCipher::new(3, "Hello World");
+            assert_eq!(cipher.get_initial_text(), "Hello World");
+        }
+
+        #[test]
+        fn should_create_cesar_cipher_with_right_text_khoor_zruog() {
+            let cipher = cesar_cipher::CesarCipher::new(3, "Hello World");
+            assert_eq!(cipher.get_right(), "Khoor Zruog");
+        }
+
+        #[test]
+        fn should_create_cesar_cipher_with_left_text_ebiil_tloia() {
+            let cipher = cesar_cipher::CesarCipher::new(3, "Hello World");
+            assert_eq!(cipher.get_left(), "Ebiil Tloia");
+        }
+    }
 }
