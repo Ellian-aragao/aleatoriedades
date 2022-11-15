@@ -8,30 +8,36 @@ class CliInterface {
     private val regexNomeTitular = Regex("^[a-zA-Z ]*\$")
 
     private fun exibirMenuPrincipal() {
+        println("-----main menu-----")
         println("1 - Criar conta")
         println("2 - exibir contas")
         println("3 - acessar conta")
         println("4 - Sair")
+        print("main menu input: ")
     }
 
     private fun exibirMenuBuscarConta() {
+        println("-----buscar conta menu-----")
         println("1 - Buscar por id")
         println("2 - Buscar por titular")
         println("3 - Voltar")
+        print("buscar conta menu input: ")
     }
 
     private fun exibirMenuConta() {
+        println("-----conta menu-----")
         println("1 - Depositar")
         println("2 - Sacar")
         println("3 - Voltar")
+        print("conta menu input: ")
     }
 
     private fun lerOpcaoDoMenuNumerico(): Int {
-        try {
-            return readLine()!!.toInt()
+        return try {
+            readLine()!!.toInt()
         } catch (e: Exception) {
             println("Opção inválida, digite números conforme menu")
-            throw RuntimeException("Opção inválida", e)
+            -1
         }
     }
 
