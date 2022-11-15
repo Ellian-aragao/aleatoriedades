@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 
 @ExtendWith(MockKExtension::class)
-internal class ContaUseCasesTest {
+internal class ContaServiceImplTest {
 
     @MockK
     lateinit var conta: Conta
@@ -21,7 +21,7 @@ internal class ContaUseCasesTest {
     lateinit var repository: ContaRepository
 
     @InjectMockKs
-    lateinit var contaUsecases: ContaUseCases
+    lateinit var contaUsecases: ContaServiceImpl
 
     @Test
     fun `deve criar uma conta`() {
