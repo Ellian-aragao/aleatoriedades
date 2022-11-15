@@ -16,6 +16,9 @@ data class Conta private constructor(
     }
 
     fun sacar(valor: Double): Conta {
+        if (valor <= 0) {
+            throw IllegalArgumentException("Valor de saque deve ser maior que zero")
+        }
         if (saldo < valor) {
             throw Exception("Saldo insuficiente");
         }
