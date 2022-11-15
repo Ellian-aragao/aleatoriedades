@@ -2,12 +2,8 @@ package aragao.ellian.github.conta.domain.usecases.conta.impl
 
 import aragao.ellian.github.conta.domain.models.Conta
 import aragao.ellian.github.conta.domain.ports.ContaRepository
-import aragao.ellian.github.conta.domain.usecases.conta.CriarConta
-import aragao.ellian.github.conta.domain.usecases.conta.DepositarConta
-import aragao.ellian.github.conta.domain.usecases.conta.ExibirContas
-import aragao.ellian.github.conta.domain.usecases.conta.SacarConta
 
-class ContaUseCases(private val repository: ContaRepository): ContaService {
+class ContaServiceImpl(private val repository: ContaRepository): ContaService {
 
     override fun criarConta(titular: String): Conta {
         val conta = Conta.Builder()
@@ -30,5 +26,13 @@ class ContaUseCases(private val repository: ContaRepository): ContaService {
 
     override fun exibirContas(): List<Conta> {
         return repository.buscarTodasContas()
+    }
+
+    override fun buscaContaComId(id: Long): Conta {
+        return repository.buscarContaPorId(id)
+    }
+
+    override fun buscaContaComTitular(titular: String): Conta {
+        return repository.buscarContaPorTitular(titular)
     }
 }
