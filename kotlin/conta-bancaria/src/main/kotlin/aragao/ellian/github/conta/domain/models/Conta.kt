@@ -2,13 +2,16 @@ package aragao.ellian.github.conta.domain.models
 
 import java.util.*
 
-class Conta private constructor(
+data class Conta private constructor(
     val id: Long,
     val titular: String,
     val saldo: Double,
 ) {
 
     fun depositar(valor: Double): Conta {
+        if (valor <= 0) {
+            throw IllegalArgumentException("Valor de deposito deve ser maior que zero")
+        }
         return Conta(id, titular, saldo + valor);
     }
 
@@ -16,8 +19,13 @@ class Conta private constructor(
         if (saldo < valor) {
             throw Exception("Saldo insuficiente");
         }
-        return Conta( id, titular,saldo - valor);
+        return Conta(id, titular, saldo - valor);
     }
+
+    fun with() = Builder()
+        .id(id)
+        .titular(titular)
+        .saldo(saldo)
 
     data class Builder(
         var id: Long? = null,
@@ -30,10 +38,11 @@ class Conta private constructor(
         fun build(): Conta {
             LinkedList<String>().apply {
                 if (Objects.isNull(titular)) add("Titular não pode ser nulo")
+                if (titular.isNullOrBlank()) add("Titular não pode ser vazio")
                 if (Objects.nonNull(saldo) && saldo!! < 0) add("Saldo deve ser maior que zero")
                 if (isNotEmpty()) throw RuntimeException(joinToString(", "))
             }
-            return Conta(id?: 0, titular!!, saldo ?: 0.0);
+            return Conta(id ?: 0, titular!!, saldo ?: 0.0);
         }
     }
 }

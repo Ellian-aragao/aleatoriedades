@@ -1,4 +1,4 @@
-package aragao.ellian.github.conta.entrypoint
+package aragao.ellian.github.conta.infra.adapter.entrypoint
 
 class CliInterface {
     private val regex = Regex("^[a-zA-Z ]*\$")
