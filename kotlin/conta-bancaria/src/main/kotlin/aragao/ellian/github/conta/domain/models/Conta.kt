@@ -45,7 +45,7 @@ data class Conta private constructor(
                 if (Objects.nonNull(saldo) && saldo!! < 0) add("Saldo deve ser maior que zero")
                 if (isNotEmpty()) throw RuntimeException(joinToString(", "))
             }
-            return Conta(id ?: 0, titular!!, saldo ?: 0.0);
+            return Conta(id ?: -1, titular!!, saldo ?: 0.0);
         }
     }
 }

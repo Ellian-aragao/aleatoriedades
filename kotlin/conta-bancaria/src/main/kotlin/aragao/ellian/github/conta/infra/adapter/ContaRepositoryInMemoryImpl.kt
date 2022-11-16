@@ -6,12 +6,17 @@ import aragao.ellian.github.conta.domain.ports.ContaRepository
 class ContaRepositoryInMemoryImpl : ContaRepository {
 
     private val conta = Conta.Builder()
+        .id(0)
         .titular("Ellian")
         .build()
 
     private val contas = mutableListOf(conta)
 
     override fun salvarConta(conta: Conta): Conta {
+        if (conta.id != -1L) {
+            contas[conta.id.toInt()] = conta
+            return conta
+        }
         val contaWithId = conta.with()
             .id(contas.size.toLong())
             .build()
