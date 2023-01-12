@@ -1,7 +1,6 @@
 import multiprocessing
 import socket
 import sys
-from _thread import *
 
 list_of_clients = []
 
@@ -11,12 +10,12 @@ def clientthread(conn, addr):
     while True:
         try:
             message = conn.recv(2048).decode()
-            if message:
-                print("<" + str(addr) + "> " + message)
-                message_to_send = "<" + str(addr) + "> " + message
-                broadcast(message_to_send, conn)
-            else:
+            if not message:
                 remove(conn)
+                continue
+            print("<" + str(addr) + "> " + message)
+            message_to_send = "<" + str(addr) + "> " + message
+            broadcast(message_to_send, conn)
         except Exception as e:
             print(e)
             print("Connection with " + str(addr) + " closed")
@@ -52,7 +51,7 @@ if __name__ == '__main__':
     while True:
         conn, addr = server.accept()
         list_of_clients.append(conn)
-        print(addr[0] + " connected")
+        print(str(addr) + " connected")
         process = multiprocessing.Process(target=clientthread, args=(conn, addr))
         processes.append(process)
         process.start()
