@@ -1,15 +1,13 @@
-use std::fmt::Formatter;
-use std::io::BufRead;
-use std::vec;
-use sensor::Sensor;
 use position::Position;
+use sensor::Sensor;
 
-mod sensor;
+mod constants;
 mod position;
+mod sensor;
 
 fn main() {
     let mut lines: Vec<Vec<Sensor>> = Vec::new();
-    let (range_x, range_y) = TAM_MAP_FLOREST;
+    let (range_x, range_y) = constants::TAM_MAP_FLOREST;
 
     for i in 0..range_x {
         let mut columns: Vec<Sensor> = Vec::new();
@@ -21,6 +19,7 @@ fn main() {
         lines.push(columns);
     }
 
+    // TODO: criar processo de verificaç~ao de nodos próximos
 
     for line in lines {
         for value in line {
@@ -28,14 +27,4 @@ fn main() {
         }
         print!("\n");
     }
-}
-
-const DISTANCE_WARNING_MESSAGE: i8 = 3;
-const DISTANCE_VIEW: i8 = 1;
-const TAM_MAP_FLOREST: (usize, usize) = (10, 10);
-
-struct Message {
-    id_from_sensor: i8,
-    warning_position: position,
-    time_warning: String,
 }

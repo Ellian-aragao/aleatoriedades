@@ -13,15 +13,12 @@ pub struct Position {
 
 impl Position {
     pub fn new(x: i8, y: i8) -> Position {
-        crate::position {
-            x,
-            y,
-        }
+        Position { x, y }
     }
 
     pub fn hash_code(&self) -> i64 {
         let x = self.x as i64;
         let y = self.y as i64;
-        ((x + y) * (x + y + 1) / 2 + x)
+        (x + y) * (x + y + 1) / 2 + x
     }
 }

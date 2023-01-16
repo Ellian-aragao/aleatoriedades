@@ -1,16 +1,15 @@
 use std::fmt::{Display, Formatter, Result};
 
+use crate::position::Position;
+
 pub struct Sensor {
     id: i64,
-    position: position,
+    position: Position,
 }
 
 impl Sensor {
-    pub fn new(id: i64, position: position) -> Sensor {
-        Sensor {
-            id,
-            position,
-        }
+    pub fn new(id: i64, position: Position) -> Sensor {
+        Sensor { id, position }
     }
 }
 
