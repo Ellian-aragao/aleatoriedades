@@ -6,9 +6,26 @@ mod position;
 mod sensor;
 
 fn main() {
-    let mut lines: Vec<Vec<Sensor>> = Vec::new();
     let (range_x, range_y) = constants::TAM_MAP_FLOREST;
 
+    let lines = create_map(range_x, range_y).expect("Error allocating map");
+
+    // TODO: criar processo de verificação de nodos próximos
+
+    print_vector(&lines);
+}
+
+fn print_vector(lines: &Vec<Vec<Sensor>>) {
+    for line in lines {
+        for value in line {
+            print!("{value} ");
+        }
+        print!("\n");
+    }
+}
+
+fn create_map(range_x: usize, range_y: usize) -> Result<Vec<Vec<Sensor>>, String> {
+    let mut lines: Vec<Vec<Sensor>> = Vec::new();
     for i in 0..range_x {
         let mut columns: Vec<Sensor> = Vec::new();
         for j in 0..range_y {
@@ -18,13 +35,5 @@ fn main() {
         }
         lines.push(columns);
     }
-
-    // TODO: criar processo de verificaç~ao de nodos próximos
-
-    for line in lines {
-        for value in line {
-            print!("{value} ");
-        }
-        print!("\n");
-    }
+    Ok(lines)
 }
