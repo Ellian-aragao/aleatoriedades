@@ -1,15 +1,29 @@
 use std::fmt::{Display, Formatter, Result};
+use std::sync::mpsc::{self, Receiver, Sender};
 
+use crate::message::Message;
 use crate::position::Position;
 
 pub struct Sensor {
     id: i64,
     position: Position,
+    sender: Sender<Message>,
+    receiver: Receiver<Message>,
 }
 
 impl Sensor {
     pub fn new(id: i64, position: Position) -> Sensor {
-        Sensor { id, position }
+        let (sender, receiver) = mpsc::channel::<Message>();
+        Sensor {
+            id,
+            position,
+            sender,
+            receiver,
+        }
+    }
+
+    pub fn from_position(position: &Position) -> Sensor {
+        Sensor::new(position.hash_code(), position.clone())
     }
 }
 

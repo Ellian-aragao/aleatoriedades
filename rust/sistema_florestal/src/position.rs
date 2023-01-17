@@ -6,6 +6,12 @@ impl Display for Position {
     }
 }
 
+impl Clone for Position {
+    fn clone(&self) -> Self {
+        Position::new(self.x, self.y)
+    }
+}
+
 pub struct Position {
     x: i8,
     y: i8,
@@ -22,3 +28,5 @@ impl Position {
         (x + y) * (x + y + 1) / 2 + x
     }
 }
+
+
