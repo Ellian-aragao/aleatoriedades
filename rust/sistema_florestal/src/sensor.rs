@@ -7,18 +7,15 @@ use crate::position::Position;
 pub struct Sensor {
     id: i64,
     position: Position,
-    sender: Sender<Message>,
-    receiver: Receiver<Message>,
+    // sender: Sender<Message>,
+    // receiver: Receiver<Message>,
 }
 
 impl Sensor {
     pub fn new(id: i64, position: Position) -> Sensor {
-        let (sender, receiver) = mpsc::channel::<Message>();
         Sensor {
             id,
             position,
-            sender,
-            receiver,
         }
     }
 
