@@ -10,7 +10,7 @@ fn main() {
     let (range_x, range_y) = constants::TAM_MAP_FLOREST;
     let range_sensor_warning = constants::DISTANCE_WARNING_MESSAGE;
     let lines = create_map(range_x, range_y);
-    let sensors = create_sensors(&lines, &range_x, &range_y, &(range_sensor_warning as usize));
+    let sensors = create_sensors(&lines, &range_sensor_warning);
     // // TODO: criar processo de verificação de nodos próximos
     print_sensors(&sensors);
     print_vector(&lines);
@@ -23,38 +23,30 @@ fn print_sensors(sensors: &[Sensor]) {
     print!("\n");
 }
 
-fn create_sensors(
-    lines: &Vec<Vec<Position>>,
-    range_x: &usize,
-    range_y: &usize,
-    range_sensor_warning: &usize,
-) -> Vec<Sensor> {
-    let nodes_per_range_y = calc_nodes_per_range_emit_message(&range_y);
-    let nodes_per_range_x = calc_nodes_per_range_emit_message(&range_x);
-    let total_nodes = nodes_per_range_x * nodes_per_range_y;
-    println!("range y {range_y}, nodes in range y: {nodes_per_range_y}");
-    println!("range x {range_x}, nodes in range x: {nodes_per_range_x}");
-    println!("total nodes: {total_nodes}");
+fn create_sensors(lines: &Vec<Vec<Position>>, range_sensor_warning: &usize) -> Vec<Sensor> {
+    let (range_x, range_y) = get_size_matrix(lines);
+    let total_nodes = calc_total_nodes(&range_x, &range_y);
     let mut sensors = Vec::with_capacity(total_nodes);
-    // println!("distance x to next node: {}", range_x / nodes_per_range_x);
-    // println!("distance y to next node: {}", range_y / nodes_per_range_y);
 
-    for counter_x in (1..*range_x).step_by(*range_sensor_warning) {
-        for counter_y in (1..*range_y).step_by(*range_sensor_warning) {
+    for counter_x in (1..range_x).step_by(*range_sensor_warning) {
+        for counter_y in (1..range_y).step_by(*range_sensor_warning) {
             let position = lines
                 .get(counter_x)
                 .and_then(|collumn| collumn.get(counter_y))
                 .expect(
-                    format!(
-                        "Do not exist position from called reference: ({counter_x},{counter_y})"
-                    )
-                    .as_str(),
+                    r#"Do not exist position from called reference: ({counter_x},{counter_y})"#,
                 );
-            let sensor = Sensor::from_position(&position);
+            let sensor = Sensor::from_position(position);
             sensors.push(sensor);
         }
     }
     sensors
+}
+
+fn get_size_matrix<T>(matrix: &Vec<Vec<T>>) -> (usize, usize) {
+    let range_x = matrix.len();
+    let range_y = matrix.get(0).expect("Matrix can not be empty").len();
+    (range_x, range_y)
 }
 
 fn calc_nodes_per_range_emit_message(range: &usize) -> usize {
@@ -64,6 +56,10 @@ fn calc_nodes_per_range_emit_message(range: &usize) -> usize {
     } else {
         nodes
     }
+}
+
+fn calc_total_nodes(range_x: &usize, range_y: &usize) -> usize {
+    calc_nodes_per_range_emit_message(range_x) * calc_nodes_per_range_emit_message(range_y)
 }
 
 fn print_vector(lines: &Vec<Vec<Position>>) {

@@ -1,7 +1,5 @@
 use std::fmt::{Display, Formatter, Result};
-use std::sync::mpsc::{self, Receiver, Sender};
 
-use crate::message::Message;
 use crate::position::Position;
 
 pub struct Sensor {
