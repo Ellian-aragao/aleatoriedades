@@ -5,20 +5,19 @@ use crate::position::Position;
 pub struct Sensor {
     id: i64,
     position: Position,
-    // sender: Sender<Message>,
-    // receiver: Receiver<Message>,
 }
 
 impl Sensor {
     pub fn new(id: i64, position: Position) -> Sensor {
-        Sensor {
-            id,
-            position,
-        }
+        Sensor { id, position }
     }
 
     pub fn from_position(position: &Position) -> Sensor {
         Sensor::new(position.hash_code(), position.clone())
+    }
+
+    pub fn position_ref(&self) -> &Position {
+        &self.position
     }
 }
 

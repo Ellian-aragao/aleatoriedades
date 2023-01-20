@@ -13,12 +13,12 @@ impl Clone for Position {
 }
 
 pub struct Position {
-    x: i8,
-    y: i8,
+    x: u8,
+    y: u8,
 }
 
 impl Position {
-    pub fn new(x: i8, y: i8) -> Position {
+    pub fn new(x: u8, y: u8) -> Position {
         Position { x, y }
     }
 
@@ -27,6 +27,18 @@ impl Position {
         let y = self.y as i64;
         (x + y) * (x + y + 1) / 2 + x
     }
+
+    pub fn delta_position(&self, position: &Position) -> f64 {
+        let delta_x = Position::delta_value(&self.x, &position.x) as i64;
+        let delta_y = Position::delta_value(&self.y, &position.y) as i64;
+
+        let square_delta_x = delta_x.pow(2) as f64;
+        let square_delta_y = delta_y.pow(2) as f64;
+
+        (square_delta_x + square_delta_y).sqrt()
+    }
+
+    fn delta_value(a: &u8, b: &u8) -> u8 {
+        a.abs_diff(*b)
+    }
 }
-
-
