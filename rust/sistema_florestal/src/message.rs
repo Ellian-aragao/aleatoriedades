@@ -1,3 +1,5 @@
+use std::fmt::Display;
+
 use crate::position::Position;
 
 pub struct Message {
@@ -5,3 +7,27 @@ pub struct Message {
     warning_position: Position,
     time_warning: String,
 }
+
+impl Message {
+    pub fn new(id_from_sensor: i8, warning_position: Position, time_warning: String) -> Self {
+        Message {
+            id_from_sensor,
+            warning_position,
+            time_warning,
+        }
+    }
+}
+
+impl Display for Message {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(
+            f,
+            "id from sensor: {}, warning_position: {}, time_warning: {}",
+            self.id_from_sensor, self.warning_position, self.time_warning
+        )
+    }
+}
+
+// impl Sync for Message {
+
+// }

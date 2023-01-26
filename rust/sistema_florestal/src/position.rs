@@ -12,13 +12,14 @@ impl Clone for Position {
     }
 }
 
+#[derive(Debug)]
 pub struct Position {
     x: u8,
     y: u8,
 }
 
 impl Position {
-    pub fn new(x: u8, y: u8) -> Position {
+    pub fn new(x: u8, y: u8) -> Self {
         Position { x, y }
     }
 
