@@ -16,6 +16,13 @@ impl Message {
             time_warning,
         }
     }
+
+    pub fn to_message(&self) -> String {
+        format!(
+            "id sensor: {}, warning position: {}, time warning: {}",
+            self.id_from_sensor, self.warning_position, self.time_warning
+        )
+    }
 }
 
 impl Display for Message {

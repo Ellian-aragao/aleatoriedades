@@ -12,7 +12,6 @@ impl Clone for Position {
     }
 }
 
-#[derive(Debug)]
 pub struct Position {
     x: u8,
     y: u8,

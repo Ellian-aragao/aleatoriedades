@@ -45,6 +45,10 @@ impl Sensor {
     pub fn read_messages(&self, timeout: &Duration) -> Vec<Result<Message, RecvTimeoutError>> {
         self.near_sensors_receiver
             .iter()
+            .map(|receiver| {
+                println!("sensor received message: {}", self);
+                receiver
+            })
             .map(|receiver| receiver.recv_timeout(*timeout))
             .collect::<Vec<_>>()
     }

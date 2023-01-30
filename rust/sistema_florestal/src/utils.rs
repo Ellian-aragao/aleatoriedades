@@ -1,13 +1,5 @@
-use crate::{
-    constants,
-    message::Message,
-    position::Position,
-    sensor::{self, Sensor},
-};
-use std::{
-    collections::HashSet,
-    sync::mpsc::{channel, Receiver, Sender}, thread, time::Duration,
-};
+use crate::{constants, message::Message, position::Position, sensor::Sensor};
+use std::{collections::HashSet, sync::mpsc::channel, thread, time::Duration};
 
 pub fn get_size_matrix<T>(matrix: &Vec<Vec<T>>) -> (usize, usize) {
     let range_x = matrix.len();
@@ -129,24 +121,29 @@ pub fn create_map(range_x: usize, range_y: usize) -> Vec<Vec<Position>> {
     lines
 }
 
-pub fn initialize_sensors(sensors: &Vec<Sensor>) {
-    sensors.iter().for_each(|sensor| {
-        thread::spawn(move || {
-            loop {
-                sensor.read_messages(&Duration::new(1,0));
-            }
-        });
+pub fn initialize_sensors(sensors: Vec<Sensor>) -> Vec<thread::JoinHandle<()>> {
+    // sensors.iter().for_each(move |sensor| {
+    let mut threads = vec![];
+    if let Some(sensor) = sensors.get(0) {
+        sensor.send_message(&Position::new(0, 0));
+    }
 
-        thread::spawn(move || {
-            loop {
-                sensor
-                    .read_messages(&Duration::new(1,0))
-                    .iter()
-                    .filter(|result| result.is_ok())
-                    .map(|result| {result.unwrap()})
-                    .for_each(|message| {println!("message: {}",message)})
-                
-            }
+    for sensor in sensors {
+
+        let joiner = thread::spawn(move || loop {
+            sensor
+                .read_messages(&Duration::new(1, 0))
+                .iter()
+                .filter(|result| result.is_ok())
+                .map(|result| result.as_ref().ok())
+                .for_each(|message| {
+                    let str = message
+                        .map(|data| data.to_message())
+                        .unwrap_or_else(|| String::from("not exist message"));
+                    println!("message: {}", str)
+                });
         });
-    })
+        threads.push(joiner);
+    }
+    threads
 }
