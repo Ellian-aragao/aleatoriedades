@@ -1,13 +1,10 @@
-use std::{thread, time::Duration};
-
-use position::Position;
-use sensor::Sensor;
+use std::io;
 
 mod constants;
+mod message;
 mod position;
 mod sensor;
 mod utils;
-mod message;
 
 fn main() {
     let (range_x, range_y) = constants::TAM_MAP_FLOREST;
@@ -16,10 +13,8 @@ fn main() {
     let sensors = utils::create_sensors(&lines, &range_sensor_warning);
     let connected_sensors = utils::connect_sensors(sensors, range_sensor_warning);
     let threads = utils::initialize_sensors(connected_sensors);
-    thread::sleep(Duration::from_secs(10));
-    for thread in threads {
-        thread.join().expect("could not join threads");
-    }
+    // makes main thread wait input and other threads make his processes
+    io::stdin().read_line(&mut String::new()).expect("send message");
     // TODO: criar processo de verificação de nodos próximos
     // utils::print_sensors(&connected_sensors);
     // utils::print_vector(&lines);

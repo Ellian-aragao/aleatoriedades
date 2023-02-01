@@ -2,7 +2,8 @@ use std::{
     fmt::{Display, Formatter},
     result::Result,
     sync::mpsc::{Receiver, RecvTimeoutError, SendError, Sender},
-    time::{self, Duration},
+    thread::{self, JoinHandle},
+    time::{Duration, SystemTime, UNIX_EPOCH},
 };
 
 use crate::{message::Message, position::Position};
@@ -53,14 +54,38 @@ impl Sensor {
             .collect::<Vec<_>>()
     }
 
-    pub fn send_message(&self, position: &Position) -> Vec<Result<(), SendError<Message>>> {
+    pub fn send_alert_from_position(
+        &self,
+        position: &Position,
+    ) -> Vec<Result<(), SendError<Message>>> {
+        let data = SystemTime::now()
+            .duration_since(UNIX_EPOCH)
+            .expect("Time wet backwards")
+            .as_secs()
+            .to_string();
+        let message = Message::new(self.id as i8, position.clone(), data);
+        self.send_message(&message)
+    }
+
+    pub fn send_message(&self, message: &Message) -> Vec<Result<(), SendError<Message>>> {
         self.near_sensors_sender
             .iter()
-            .map(|sender| {
-                let data = time::Instant::now().elapsed().as_secs().to_string();
-                sender.send(Message::new(self.id as i8, position.clone(), data))
-            })
+            .map(|sender| sender.send(message.clone()))
             .collect::<Vec<_>>()
+    }
+
+    pub fn run(self) -> JoinHandle<()> {
+        thread::spawn(move || loop {
+            self.read_messages(&Duration::new(1, 0))
+                .iter()
+                .filter(|result| result.is_ok())
+                .map(|result| result.as_ref().ok())
+                .map(|opt_message| opt_message.unwrap())
+                .for_each(|message| {
+                    println!("message: {}", message.to_message());
+                    self.send_message(message);
+                });
+        })
     }
 }
 
@@ -69,5 +94,3 @@ impl Display for Sensor {
         write!(f, "[{:0>3},{}])", self.id, self.position)
     }
 }
-
-unsafe impl Send for Sensor {}

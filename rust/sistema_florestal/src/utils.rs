@@ -9,7 +9,7 @@ pub fn get_size_matrix<T>(matrix: &Vec<Vec<T>>) -> (usize, usize) {
 
 pub fn connect_sensors(mut sensors: Vec<Sensor>, range_sensor_warning: usize) -> Vec<Sensor> {
     let mut control_duplication_index_correlation = HashSet::new();
-    let mut correlationIndex = vec![];
+    let mut correlation_index = vec![];
     sensors.iter().enumerate().for_each(|(i, sensor_a)| {
         sensors.iter().enumerate().for_each(|(j, sensor_b)| {
             let delta_positions = sensor_a
@@ -18,13 +18,12 @@ pub fn connect_sensors(mut sensors: Vec<Sensor>, range_sensor_warning: usize) ->
             if delta_position_is_between_zero_and_right_limit(delta_positions, range_sensor_warning)
                 && (not_saved_pair_in_set(&mut control_duplication_index_correlation, &i, &j))
             {
-                println!("delta: {delta_positions} - could join: {sensor_a} - {sensor_b}");
-                correlationIndex.push((i, j));
+                correlation_index.push((i, j));
             }
         });
     });
 
-    correlationIndex.iter().for_each(|(i, j)| {
+    correlation_index.iter().for_each(|(i, j)| {
         let (sender_a, receiver_a) = channel::<Message>();
         let (sender_b, receiver_b) = channel::<Message>();
 
@@ -122,27 +121,13 @@ pub fn create_map(range_x: usize, range_y: usize) -> Vec<Vec<Position>> {
 }
 
 pub fn initialize_sensors(sensors: Vec<Sensor>) -> Vec<thread::JoinHandle<()>> {
-    // sensors.iter().for_each(move |sensor| {
-    let mut threads = vec![];
+    let mut threads = Vec::with_capacity(sensors.len());
     if let Some(sensor) = sensors.get(0) {
-        sensor.send_message(&Position::new(0, 0));
+        sensor.send_alert_from_position(&Position::new(0, 0));
     }
 
     for sensor in sensors {
-
-        let joiner = thread::spawn(move || loop {
-            sensor
-                .read_messages(&Duration::new(1, 0))
-                .iter()
-                .filter(|result| result.is_ok())
-                .map(|result| result.as_ref().ok())
-                .for_each(|message| {
-                    let str = message
-                        .map(|data| data.to_message())
-                        .unwrap_or_else(|| String::from("not exist message"));
-                    println!("message: {}", str)
-                });
-        });
+        let joiner = sensor.run();
         threads.push(joiner);
     }
     threads

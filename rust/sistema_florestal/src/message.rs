@@ -25,6 +25,12 @@ impl Message {
     }
 }
 
+impl Clone for Message {
+    fn clone(&self) -> Self {
+        Self { id_from_sensor: self.id_from_sensor.clone(), warning_position: self.warning_position.clone(), time_warning: self.time_warning.clone() }
+    }
+}
+
 impl Display for Message {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(
