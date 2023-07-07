@@ -11,15 +11,18 @@ use crate::{message::Message, position::Position};
 pub struct Sensor {
     id: i64,
     position: Position,
+    is_border_sensor: bool,
     near_sensors_sender: Box<Vec<Sender<Message>>>,
     near_sensors_receiver: Box<Vec<Receiver<Message>>>,
 }
 
 impl Sensor {
     pub fn new(id: i64, position: Position) -> Self {
+        let is_border_sensor = false;
         Sensor {
             id,
             position,
+            is_border_sensor,
             near_sensors_sender: Box::new(vec![]),
             near_sensors_receiver: Box::new(vec![]),
         }
@@ -31,6 +34,11 @@ impl Sensor {
 
     pub fn position_ref(&self) -> &Position {
         &self.position
+    }
+
+    pub fn border_sensor(mut self, is_border_sensor: bool) -> Self {
+        self.is_border_sensor = is_border_sensor;
+        self
     }
 
     pub fn add_sensor_sender(&mut self, sender: Sender<Message>) -> &mut Self {
@@ -68,6 +76,10 @@ impl Sensor {
     }
 
     pub fn send_message(&self, message: &Message) -> Vec<Result<(), SendError<Message>>> {
+        if self.is_border_sensor {
+            print!("send to mastery node");
+            return vec![];
+        }
         self.near_sensors_sender
             .iter()
             .map(|sender| sender.send(message.clone()))
@@ -91,6 +103,6 @@ impl Sensor {
 
 impl Display for Sensor {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "[{:0>3},{}])", self.id, self.position)
+        write!(f, "[{:0>3},{},{}])", self.id, self.position, self.is_border_sensor)
     }
 }

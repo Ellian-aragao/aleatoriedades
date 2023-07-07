@@ -1,5 +1,5 @@
 use crate::{constants, message::Message, position::Position, sensor::Sensor};
-use std::{collections::HashSet, sync::mpsc::channel, thread, time::Duration};
+use std::{collections::HashSet, sync::mpsc::channel, thread};
 
 pub fn get_size_matrix<T>(matrix: &Vec<Vec<T>>) -> (usize, usize) {
     let range_x = matrix.len();
@@ -15,9 +15,11 @@ pub fn connect_sensors(mut sensors: Vec<Sensor>, range_sensor_warning: usize) ->
             let delta_positions = sensor_a
                 .position_ref()
                 .delta_position(&sensor_b.position_ref());
-            if delta_position_is_between_zero_and_right_limit(delta_positions, range_sensor_warning)
-                && (not_saved_pair_in_set(&mut control_duplication_index_correlation, &i, &j))
-            {
+            let is_value_between_zero_and_right_limit =
+                value_is_between_zero_and_right_limit(delta_positions, range_sensor_warning as f64);
+            let is_created_connection_yet =
+                not_saved_pair_in_set(&mut control_duplication_index_correlation, &i, &j);
+            if is_value_between_zero_and_right_limit && is_created_connection_yet {
                 correlation_index.push((i, j));
             }
         });
@@ -51,11 +53,8 @@ fn not_saved_pair_in_set(hashset: &mut HashSet<(usize, usize)>, i: &usize, j: &u
     not_saved
 }
 
-fn delta_position_is_between_zero_and_right_limit(
-    delta_positions: f64,
-    right_limit: usize,
-) -> bool {
-    0.0 < delta_positions && delta_positions <= right_limit as f64
+fn value_is_between_zero_and_right_limit(value: f64, right_limit: f64) -> bool {
+    0.0 < value && value <= right_limit
 }
 
 pub fn print_sensors(sensors: &[Sensor]) {
@@ -74,15 +73,35 @@ pub fn create_sensors(lines: &Vec<Vec<Position>>, range_sensor_warning: &usize) 
         for counter_y in (1..range_y).step_by(*range_sensor_warning) {
             let position = lines
                 .get(counter_x)
-                .and_then(|collumn| collumn.get(counter_y))
+                .and_then(|column| column.get(counter_y))
                 .expect(
                     r#"Do not exist position from called reference: ({counter_x},{counter_y})"#,
                 );
-            let sensor = Sensor::from_position(position);
+
+            let is_border_sensor =
+                verify_if_border_node(position, &range_x, &range_y, range_sensor_warning);
+            let sensor = Sensor::from_position(position).border_sensor(is_border_sensor);
+
             sensors.push(sensor);
         }
     }
     sensors
+}
+
+fn verify_if_border_node(
+    position: &Position,
+    range_x: &usize,
+    range_y: &usize,
+    range_sensor_warning: &usize,
+) -> bool {
+    vec![
+        position.delta_x(&0),
+        position.delta_x(&(*range_x as u8)),
+        position.delta_y(&0),
+        position.delta_y(&(*range_y as u8)),
+    ]
+    .iter()
+    .any(|delta| delta <= &(*range_sensor_warning as u8))
 }
 
 fn calc_nodes_per_range_emit_message(range: &usize) -> usize {
@@ -101,7 +120,7 @@ fn calc_total_nodes(range_x: &usize, range_y: &usize) -> usize {
 pub fn print_vector(lines: &Vec<Vec<Position>>) {
     for line in lines {
         for value in line {
-            print!("{value} ");
+            println!("{value} ");
         }
         print!("\n");
     }

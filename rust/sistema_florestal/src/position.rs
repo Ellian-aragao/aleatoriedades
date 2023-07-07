@@ -38,6 +38,14 @@ impl Position {
         (square_delta_x + square_delta_y).sqrt()
     }
 
+    pub fn delta_x(&self, reference: &u8) -> u8 {
+        Position::delta_value(&self.x, reference)
+    }
+
+    pub fn delta_y(&self, reference: &u8) -> u8 {
+        Position::delta_value(&self.y, reference)
+    }
+
     fn delta_value(a: &u8, b: &u8) -> u8 {
         a.abs_diff(*b)
     }
