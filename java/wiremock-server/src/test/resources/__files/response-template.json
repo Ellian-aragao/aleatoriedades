@@ -1,0 +1,6 @@
+{
+  "payload": "{{jsonPath request.body '$'}}",
+  "message": "Hello, {{jsonPath request.body '$.payload.name'}}!",
+  "rand": "{{randomInt}}",
+  "hostname": "{{hostname}}"
+}
