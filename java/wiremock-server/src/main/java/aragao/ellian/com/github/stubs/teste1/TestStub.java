@@ -13,6 +13,7 @@ public class TestStub implements StubConfig {
         WireMock.stubFor(WireMock.post(WireMock.urlEqualTo("/api/teste1"))
                 .willReturn(aResponse()
                         .withHeader("Content-Type", "application/json")
-                        .withTransformers(TestTransformer.class.getSimpleName(), "response-template")));
+                        .withBodyFile("test1/response.json")
+                        .withTransformers(TestTransformer.class.getSimpleName())));
     }
 }

@@ -1,7 +1,6 @@
 package aragao.ellian.com.github.stubs.teste1;
 
 import aragao.ellian.com.github.interfaces.DefaultResponseTransformerConfig;
-import com.github.tomakehurst.wiremock.common.BinaryFile;
 import com.github.tomakehurst.wiremock.common.FileSource;
 import com.github.tomakehurst.wiremock.extension.Parameters;
 import com.github.tomakehurst.wiremock.http.Request;
@@ -12,9 +11,6 @@ import com.google.auto.service.AutoService;
 public class TestTransformer extends DefaultResponseTransformerConfig {
     @Override
     public Response transform(Request request, Response response, FileSource files, Parameters parameters) {
-        BinaryFile binaryFile = files.child("test1").getBinaryFileNamed("response.json");
-        return Response.Builder.like(response)
-                .body(binaryFile)
-                .build();
+        return Response.Builder.like(response).build();
     }
 }

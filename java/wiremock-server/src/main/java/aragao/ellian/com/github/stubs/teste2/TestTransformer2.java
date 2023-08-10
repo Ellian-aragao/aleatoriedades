@@ -27,7 +27,7 @@ public class TestTransformer2 extends DefaultResponseTransformerConfig {
             ObjectFromPayload objectFromPayload = objectMapper.readValue(request.getBody(), ObjectFromPayload.class);
             System.out.println(files.getPath());
             return Response.Builder.like(response)
-                    .body("{'hello': 'world', 'version':" + objectFromPayload.getPayload().getName() + "}")
+                    .body("{'hello': 'world', 'version':\"" + objectFromPayload.getPayload().getName() + "\"}")
                     .build();
         } catch (IOException e) {
             throw new RuntimeException(e);
