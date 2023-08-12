@@ -1,0 +1,7 @@
+<div>
+  <h3>Event binding</h3>
+  <input type="text" (keyup)="digitando($event)" (keyup.enter)="enterDigitado()" class="mr-2">
+  <button (click)="botaoClicado()" class="btn btn-primary">Salvar</button>
+  <p>texto digitado no input: {{ inputText }}</p>
+  <p>texto salvo do input: {{ savedText }}</p>
+</div>

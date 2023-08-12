@@ -1,0 +1,36 @@
+<header>
+  <nav class="nav nav-pills">
+    <a
+      *ngIf="mostraMenu"
+      routerLinkActive="active"
+      routerLink="/interpolacaoBinding"
+      class="nav-link"
+      >Interpolação e Bindings</a
+    >
+    <a
+      *ngIf="mostraMenu"
+      routerLinkActive="active"
+      routerLink="/diretivas"
+      class="nav-link"
+      >Diretivas</a
+    >
+    <a
+      *ngIf="!mostraMenu"
+      routerLinkActive="active"
+      routerLink="/cursos"
+      class="nav-link"
+      >cursos</a
+    >
+    <a *ngIf="mostraMenu" routerLinkActive="active" routerLink="/forms" class="nav-link">forms</a>
+    <a
+      *ngIf="!mostraMenu"
+      routerLinkActive="active"
+      routerLink="/login"
+      class="nav-link"
+      >Login</a
+    >
+  </nav>
+</header>
+<main class="ml-3">
+  <router-outlet></router-outlet>
+</main>
