@@ -1,5 +1,4 @@
 #include "../header/sum.h"
-#include <stdio.h>
 
 void execute_sum(char *buffer_response, const char *operador1, const char *operador2)
 {
@@ -15,18 +14,9 @@ void execute_sum(char *buffer_response, const char *operador1, const char *opera
     SizeStrings values = extract_values_from_operators_iteration(operador1, operador2, offset_operator1, offset_operator2);
 
     int soma = values.operator1 + values.operator2 + resto;
-    int sum_mod_ten = soma % 10;
+    resto = soma % 10;
 
-    buffer_response[offset_writer] = sum_mod_ten + '0';
-
-    if (sum_mod_ten != 0)
-    {
-      resto = 0;
-    }
-    else
-    {
-      resto = 1;
-    }
+    buffer_response[offset_writer] = resto + '0';
   }
 
   for (; offset_operator1 >= 0; offset_operator1--, offset_writer--)
