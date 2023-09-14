@@ -7,15 +7,18 @@ TARGET_FOLDER = build
 OBJ = $(subst .c,.o,$(subst src,build,$(C_SOURCE)))
 
 build: $(OBJ)
-	@echo building files $(OBJ)
-	$(CC) -lm $(OBJ) -o $(PROGRAM_NAME)
+	@echo Criando binário dos arquivos objetos
+	$(CC)  $(OBJ) -o $(PROGRAM_NAME)
 
-build/%.o: $(C_SOURCE) $(H_SOURCE)
+build/%.o: src/%.c $(H_SOURCE)
 	@ echo 'Compilando o arquivo: $<'
 	$(CC) $(CC_FLAGS) -c $< -o $@
 	@ echo ' '
 	@ echo 'Compilação concluída: $@'
 	@ echo ' '
+
+run: $(build)
+	@ ./$(PROGRAM_NAME) < input.txt
 
 clean:
 	@echo "cleaning up..."
