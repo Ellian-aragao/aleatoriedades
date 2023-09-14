@@ -1,4 +1,4 @@
-#include "operations.h"
+#include "../header/operations.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -9,6 +9,9 @@ typedef enum Operations
   SUBTRACAO = 2,
   MULTIPLICACAO = 3,
 } Operations;
+
+
+Operations which_operation_type(int operation);
 
 Operations which_operation_type(int operation)
 {

@@ -1,10 +1,10 @@
 #include <stdio.h>
-#include "operations.h"
+#include "../header/operations.h"
 
-int main(int argc, char const *argv[])
+int main()
 {
   unsigned int n_entradas;
-  scanf("%d", &n_entradas);
+  scanf("%u", &n_entradas);
 
   char operador1[500], operador2[500], response[501];
   int tipo_operacao;
