@@ -6,6 +6,7 @@ typedef enum Operations
   SUBTRACAO = 2,
   MULTIPLICACAO = 3,
 } Operations;
+
 Operations which_operation_type(int operation);
 
 Operations which_operation_type(int operation)
@@ -31,7 +32,7 @@ void execute_operation_from_type_operation(char *buffer_response, const char *op
   {
   case SOMA:
     execute_sum(buffer_response, operador1, operador2);
-    break;
+      break;
   case SUBTRACAO:
     execute_subtraction(buffer_response, operador1, operador2);
     break;
