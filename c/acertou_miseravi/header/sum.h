@@ -6,6 +6,6 @@
 
 #include "../header/commons.h"
 
-void executa_operacao_soma(char *buffer_response, const char *operador1, const char *operador2);
+void execute_sum(char *buffer_response, const char *operador1, const char *operador2);
 
 #endif

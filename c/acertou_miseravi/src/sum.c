@@ -1,6 +1,6 @@
 #include "../header/sum.h"
 
-void executa_operacao_soma(char *buffer_response, const char *operador1, const char *operador2)
+void execute_sum(char *buffer_response, const char *operador1, const char *operador2)
 {
   int size_operador1 = strlen(operador1);
   int size_operador2 = strlen(operador2);
@@ -9,7 +9,7 @@ void executa_operacao_soma(char *buffer_response, const char *operador1, const c
   int i, j;
   for (i = size_operador1 - 1, j = size_operador2 - 1; i >= 0; i--, j--)
   {
-    SizeStrings values = extract_values(operador1, operador2, i, j);
+    SizeStrings values = extract_values_from_operators_iteration(operador1, operador2, i, j);
 
     int soma = values.operator1 + values.operator2 + resto;
 

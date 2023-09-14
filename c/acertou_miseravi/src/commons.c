@@ -1,6 +1,6 @@
 #include "../header/commons.h"
 
-SizeStrings extract_values(const char *operador1, const char *operador2, int iteration_operator1, int iteration_operator2)
+SizeStrings extract_values_from_operators_iteration(const char *operador1, const char *operador2, int iteration_operator1, int iteration_operator2)
 {
   char operador1_slice[2], operador2_slice[2];
 

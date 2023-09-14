@@ -30,13 +30,13 @@ void execute_operation_from_type_operation(char *buffer_response, const char *op
   switch (operation)
   {
   case SOMA:
-    executa_operacao_soma(buffer_response, operador1, operador2);
+    execute_sum(buffer_response, operador1, operador2);
     break;
   case SUBTRACAO:
-    executa_operacao_subtracao(buffer_response, operador1, operador2);
+    execute_subtraction(buffer_response, operador1, operador2);
     break;
   case MULTIPLICACAO:
-    executa_operacao_multiplicacao(buffer_response, operador1, operador2);
+    execute_multiply(buffer_response, operador1, operador2);
     break;
   default:
     perror("Erro ao executar operações");
