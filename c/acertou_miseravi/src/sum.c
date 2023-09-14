@@ -1,36 +1,43 @@
 #include "../header/sum.h"
+#include <stdio.h>
 
 void execute_sum(char *buffer_response, const char *operador1, const char *operador2)
 {
   int size_operador1 = strlen(operador1);
   int size_operador2 = strlen(operador2);
 
+  int buffer_last_element = size_operador1 > size_operador2 ? size_operador1 : size_operador2;
+
   int resto = 0;
-  int i, j;
-  for (i = size_operador1 - 1, j = size_operador2 - 1; i >= 0; i--, j--)
+  int offset_operator1, offset_operator2, offset_writer;
+  for (offset_operator1 = size_operador1, offset_operator2 = size_operador2, offset_writer = buffer_last_element; offset_operator1 >= 0 && offset_operator2 >= 0; offset_operator1--, offset_operator2--, offset_writer--)
   {
-    SizeStrings values = extract_values_from_operators_iteration(operador1, operador2, i, j);
+    SizeStrings values = extract_values_from_operators_iteration(operador1, operador2, offset_operator1, offset_operator2);
 
     int soma = values.operator1 + values.operator2 + resto;
+    int sum_mod_ten = soma % 10;
 
-    if (soma % 10 != 0)
+    buffer_response[offset_writer] = sum_mod_ten + '0';
+
+    if (sum_mod_ten != 0)
     {
-      buffer_response[i] = soma % 10 + '0';
       resto = 0;
     }
     else
     {
-      buffer_response[i] = '0';
       resto = 1;
     }
   }
 
-  if (resto != 0)
+  for (; offset_operator1 >= 0; offset_operator1--, offset_writer--)
   {
-    buffer_response[i] = '1';
+    buffer_response[offset_writer] = operador1[offset_operator1];
   }
 
-  int buffer_last_element = size_operador1 < size_operador2 ? size_operador1 : size_operador2;
+  for (; offset_operator2 >= 0; offset_operator2--, offset_writer--)
+  {
+    buffer_response[offset_writer] = operador1[offset_operator2];
+  }
 
   buffer_response[buffer_last_element + 1] = '\0';
 }

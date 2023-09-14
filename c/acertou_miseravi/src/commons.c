@@ -4,8 +4,8 @@ SizeStrings extract_values_from_operators_iteration(const char *operador1, const
 {
   char operador1_slice[2], operador2_slice[2];
 
-  operador1_slice[0] = operador1[iteration_operator1];
-  operador2_slice[0] = operador2[iteration_operator2];
+  operador1_slice[0] = operador1[iteration_operator1 - 1];
+  operador2_slice[0] = operador2[iteration_operator2 - 1];
   operador1_slice[1] = '\0';
   operador2_slice[1] = '\0';
 

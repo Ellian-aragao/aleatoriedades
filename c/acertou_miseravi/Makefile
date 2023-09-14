@@ -8,7 +8,7 @@ OBJ = $(subst .c,.o,$(subst src,build,$(C_SOURCE)))
 
 build: $(OBJ)
 	@echo Criando binário dos arquivos objetos
-	$(CC)  $(OBJ) -o $(PROGRAM_NAME)
+	$(CC) $(OBJ) -o $(PROGRAM_NAME)
 
 build/%.o: src/%.c $(H_SOURCE)
 	@ echo ' '
@@ -24,3 +24,15 @@ run: build
 clean:
 	@echo "cleaning up..."
 	rm -rvf $(wildcard $(TARGET_FOLDER)/*.o) $(PROGRAM_NAME)
+
+debug: $(OBJ)
+	@echo Criando binário dos arquivos objetos
+	$(CC) -g $(OBJ) -o $(PROGRAM_NAME)
+
+build/%.o: src/%.c $(H_SOURCE)
+	@ echo ' '
+	@ echo 'Compilando o arquivo em debug: $<'
+	$(CC) -g $(CC_FLAGS) -c $< -o $@
+	@ echo ' '
+	@ echo 'Compilação concluída: $@'
+	@ echo ' '
