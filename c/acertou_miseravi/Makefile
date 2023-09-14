@@ -11,13 +11,14 @@ build: $(OBJ)
 	$(CC)  $(OBJ) -o $(PROGRAM_NAME)
 
 build/%.o: src/%.c $(H_SOURCE)
+	@ echo ' '
 	@ echo 'Compilando o arquivo: $<'
 	$(CC) $(CC_FLAGS) -c $< -o $@
 	@ echo ' '
 	@ echo 'Compilação concluída: $@'
 	@ echo ' '
 
-run: $(build)
+run: build
 	@ ./$(PROGRAM_NAME) < input.txt
 
 clean:
